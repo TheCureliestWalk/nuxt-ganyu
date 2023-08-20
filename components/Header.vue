@@ -1,15 +1,15 @@
 <template>
   <div class="p-4 bg-gradient-to-r from-slate-700 to-slate-900 flex flex-col md:flex-row justify-between shadow text-white">
     <h1 class="text-2xl font-bold">
-      <a class="hover:text-sky-500 duration-200" href="/">
+      <NuxtLink class="hover:text-sky-500 duration-200" href="/">
         Ganyu
-      </a>
+      </NuxtLink>
     </h1>
     <ul class="flex items-center flex-col md:flex-row">
       <li v-for="menu in menus">
-        <a class="px-2 hover:text-amber-500 hover:bg-gray-900 duration-100 delay-75" :href="menu.link">
+        <NuxtLink class="px-2 hover:text-amber-500 hover:bg-gray-900 duration-100 delay-75" :to="menu.link">
           {{ menu.name }}
-        </a>
+        </NuxtLink>
       </li>
     </ul>
   </div>
