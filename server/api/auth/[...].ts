@@ -17,16 +17,5 @@ export default NuxtAuthHandler({
                 "X-API-Key": 'c4cc47abe75f4a8fae4c94963153bb34'
             }
         }),
-    ],
-    callbacks: {
-        async signIn({user, account, profile, email, credentials}) {
-            return true
-        },
-        async redirect({url, baseUrl}) {
-            return baseUrl
-        },
-        async session({session, user, token}) {
-            return session
-        }
-    }
+    ]
 })
