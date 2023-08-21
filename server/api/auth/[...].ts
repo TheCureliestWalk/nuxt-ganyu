@@ -13,7 +13,6 @@ export default NuxtAuthHandler({
         BungieProvider.default({
             clientId: "44772",
             clientSecret: "ROW9X3wmXjA3AnvqWxSkWM0WCFVdb8v68Is7r5yPnH4",
-            // @ts-ignore
             headers: {
                 "X-API-Key": 'c4cc47abe75f4a8fae4c94963153bb34'
             }
