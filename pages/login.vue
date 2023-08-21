@@ -21,10 +21,10 @@ const userState = computed(() => {
   }
 })
 async function login() {
-  await signIn({ callbackUrl: '/' }) // Sign in the user
+  await signIn('github') // Sign in the user
 }
 
 async function logout() {
-  await signOut() // Sign out the user
+  await signOut({ callbackUrl: '/' }) // Sign out the user
 }
 </script>
