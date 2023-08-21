@@ -5,5 +5,6 @@ export default eventHandler(async (event) => {
     if (!session) {
         return { status: 'unauthenticated!' }
     }
+    console.log('WOW YOU AUTH BY IHO')
     return session
 })
