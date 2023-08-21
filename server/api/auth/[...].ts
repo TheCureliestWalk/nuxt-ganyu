@@ -2,7 +2,7 @@ import { NuxtAuthHandler } from '#auth'
 import GithubProvider from 'next-auth/providers/github'
 import BungieProvider from "next-auth/providers/bungie";
 export default NuxtAuthHandler({
-    secret: "ihoIsGood",
+    secret: process.env.SECRETS,
     providers: [
         // @ts-expect-error
         GithubProvider.default({
