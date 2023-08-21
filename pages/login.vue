@@ -21,7 +21,7 @@ const userState = computed(() => {
   }
 })
 async function login() {
-  await signIn() // Sign in the user
+  await signIn('bungie', { callbackUrl: '/' }) // Sign in the user
 }
 
 async function logout() {
