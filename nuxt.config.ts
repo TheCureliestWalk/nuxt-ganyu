@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     // Whether to refresh the session whenever a window focus event happens, i.e, when your user refocuses the window. Set this to `false` to turn this off
     enableSessionRefreshOnWindowFocus: true,
     // Whether to add a global authentication middleware that will protect all pages without exclusion
-    globalAppMiddleware: false,
+    globalAppMiddleware: true,
     // Select the default-provider to use when `signIn` is called. Setting this here will also effect the global middleware behavior: E.g., when you set it to `github` and the user is unauthorized, they will be directly forwarded to the Github OAuth page instead of seeing the app-login page
     defaultProvider: 'github',
     // Whether to automatically set the callback url to the page the user tried to visit when the middleware stopped them. This is useful to disable this when using the credentials provider, as it does not allow a `callbackUrl`. Setting this to a string-value will result in that being used as the callbackUrl path.
