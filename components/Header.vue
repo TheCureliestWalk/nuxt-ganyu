@@ -27,6 +27,10 @@ const menus = ref<MenuType[]>([
     link: '/'
   },
   {
+    name: 'Login',
+    link: '/login'
+  },
+  {
     name: 'Quest/Bounty',
     link: '/quests'
   },

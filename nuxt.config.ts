@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import path from 'path'
+import fs from 'fs'
+
 export default defineNuxtConfig({
   ssr: true,
   devtools: {enabled: true},
@@ -8,7 +11,7 @@ export default defineNuxtConfig({
   ],
   auth: {
     // BASE URL ADDED BY IHO
-    baseURL: 'https://ganyu.me',
+    baseURL: 'http://localhost:3000',
     // The module is enabled. Change this to disable the module
     isEnabled: true,
     // The origin is set to the development origin. Change this when deploying to production by setting `origin` in this config before build-time or by exporting `AUTH_ORIGIN` by running `export AUTH_ORIGIN=...`
@@ -36,5 +39,20 @@ export default defineNuxtConfig({
   },
   experimental: {
     payloadExtraction: false
-  }
+  },
+  app: {
+    head: {
+      title: 'Ganyu App'
+    }
+  },
+  // Setup for HTTPS
+  // server: {
+  //   host: 'localhost',
+  //   port: 3000,
+  //   https: {
+  //     key: fs.readFileSync(path.resolve(__dirname, 'private_2.key')),
+  //     cert: fs.readFileSync(path.resolve(__dirname, 'cert_2.crt')),
+  //     passphrase: process.env.SECRETS
+  //   }
+  // }
 })

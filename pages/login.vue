@@ -3,6 +3,7 @@
     <BlockHeader title="Login">
       <p>Status: {{ userState }}</p>
       <p>Data: {{ data }}</p>
+      <img v-if="status === 'authenticated'" :src="data?.user.image" alt="Profile Image">
       <Button v-if="status === 'unauthenticated'" name="Login" @click="login()"/>
       <Button v-else name="Logout" @click="logout()"/>
     </BlockHeader>
