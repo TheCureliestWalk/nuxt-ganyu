@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   ],
   auth: {
     // BASE URL ADDED BY IHO
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://ganyu.me',
     // The module is enabled. Change this to disable the module
     isEnabled: true,
     // The origin is set to the development origin. Change this when deploying to production by setting `origin` in this config before build-time or by exporting `AUTH_ORIGIN` by running `export AUTH_ORIGIN=...`
