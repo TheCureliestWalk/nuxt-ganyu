@@ -38,7 +38,7 @@ const signUpPassword = async () => {
     }
 
   } catch (error) {
-    alert(error.error_description || error.message)
+    alert(error)
   } finally {
     isLoading.value = false
   }

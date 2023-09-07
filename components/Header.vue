@@ -35,6 +35,11 @@ const menus = ref<MenuType[]>([
     icon: 'game-icons:abstract-050'
   },
   {
+    name: 'My Profile',
+    link: '/profile',
+    icon: 'bx:bxs-user'
+  },
+  {
     name: 'Register',
     link: '/register',
     icon: 'bx:bxs-user'
