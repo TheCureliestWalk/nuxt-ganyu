@@ -30,6 +30,16 @@ const menus = ref<MenuType[]>([
     icon: 'bx:bxs-home'
   },
   {
+    name: 'Apps',
+    link: '/app',
+    icon: 'game-icons:abstract-050'
+  },
+  {
+    name: 'Register',
+    link: '/register',
+    icon: 'bx:bxs-user'
+  },
+  {
     name: 'Login',
     link: '/login',
     icon: 'bx:bxs-user'
@@ -38,11 +48,6 @@ const menus = ref<MenuType[]>([
     name: 'Quest/Bounty',
     link: '/quests',
     icon: 'fluent-emoji-high-contrast:bubbles'
-  },
-  {
-    name: 'Apps',
-    link: '/app',
-    icon: 'game-icons:abstract-050'
   },
   {
     name: 'Settings',

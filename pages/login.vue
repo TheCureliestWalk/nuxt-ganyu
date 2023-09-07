@@ -1,12 +1,24 @@
 <template>
   <BlockColumn>
     <BlockHeader title="Login" class="max-w-md mx-auto">
-      <div class="flex flex-col justify-center items-center gap-2.5">
-        <Input name="Email" type="text" v-model="email"/>
-        <Input name="Password" type="password" v-model="password"/>
-        <Button name="Sign In" icon="bx:bxs-user" @click="signInPassword" :disabled="isLoading"/>
-        <Button name="Sign In /w GitHub" icon="bx:bxs-user" @click="signInGitHub" :disabled="isLoading"/>
-      </div>
+      <form class="flex flex-col justify-center items-center gap-2.5">
+        <label for="email">Email</label>
+        <input name="email" type="text" v-model="email" class="p-1.5 bg-gray-300 rounded">
+        <label for="email">Password</label>
+        <input name="password" type="password" v-model="password" class="p-1.5 bg-gray-300 rounded">
+        <button type="submit" @click.prevent="signInPassword" :disabled="isLoading" class="mt-2.5 p-2 bg-amber-500 text-white rounded cursor-pointer">
+          <Icon name="bx:bxs-user"/>
+          <span>
+            Login /w Password
+          </span>
+        </button>
+        <button type="submit" @click.prevent="signInGitHub" :disabled="isLoading" class="p-2 bg-amber-500 text-white rounded cursor-pointer">
+          <Icon name="bx:bxs-user"/>
+          <span>
+            Login /w GitHub
+          </span>
+        </button>
+      </form>
     </BlockHeader>
   </BlockColumn>
 </template>

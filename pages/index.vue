@@ -4,12 +4,12 @@
     <h1 class="font-bold tracking-wide text-4xl text-sky-500">~Ganyu~</h1>
     <small class="tracking-wide text-sm">Welcome to Ganyu App, here you will find my maybe (useless) apps.</small>
     <div class="flex gap-4">
-      <Button name="Login" icon="bx:bxs-user" link="/login"/>
+      <Button name="Login" icon="bx:bxs-user" link="/login" v-if="user"/>
       <Button name="About" icon="bx:bxs-info-circle"/>
     </div>
   </div>
 </template>
 
 <script setup>
-
+  const user = useSupabaseUser()
 </script>
