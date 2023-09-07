@@ -7,7 +7,8 @@
     </h1>
     <ul class="flex items-center flex-col md:flex-row">
       <li v-for="menu in menus">
-        <NuxtLink class="px-2 hover:text-amber-500 hover:bg-gray-900 duration-100 delay-75" :to="menu.link">
+        <NuxtLink class="flex gap-1 px-2 items-center hover:text-amber-500 hover:bg-gray-900 duration-100 delay-75" :to="menu.link">
+          <Icon v-if="menu.icon" :name="menu.icon"/>
           {{ menu.name }}
         </NuxtLink>
       </li>
@@ -18,29 +19,35 @@
 <script setup lang="ts">
 type MenuType = {
   name: string,
-  link: string
+  link: string,
+  icon?: string
 }
 
 const menus = ref<MenuType[]>([
   {
     name: 'Home',
-    link: '/'
+    link: '/',
+    icon: 'bx:bxs-home'
   },
   {
     name: 'Login',
-    link: '/login'
+    link: '/login',
+    icon: 'bx:bxs-user'
   },
   {
     name: 'Quest/Bounty',
-    link: '/quests'
+    link: '/quests',
+    icon: 'fluent-emoji-high-contrast:bubbles'
   },
   {
-    name: 'Character',
-    link: '/characters'
+    name: 'Apps',
+    link: '/app',
+    icon: 'game-icons:abstract-050'
   },
   {
     name: 'Settings',
-    link: '/settings'
+    link: '/settings',
+    icon: 'bx:bxs-cog'
   }
 ])
 </script>
