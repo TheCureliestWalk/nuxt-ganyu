@@ -9,7 +9,9 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@nuxt/image',
     '@nuxtjs/supabase',
-    'nuxt-lodash'
+    'nuxt-lodash',
+    '@vite-pwa/nuxt',
+    'nuxt-security'
   ],
   supabase: {
     redirect: false

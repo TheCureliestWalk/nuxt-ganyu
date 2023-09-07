@@ -14,8 +14,10 @@
     "@nuxtjs/supabase": "^1.1.0",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@types/node": "^20.5.9",
+    "@vite-pwa/nuxt": "^0.1.0",
     "nuxt": "^3.7.0",
     "nuxt-headlessui": "^1.1.4",
+    "nuxt-security": "^0.14.4",
     "prisma": "^5.2.0"
   },
   "dependencies": {
