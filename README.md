@@ -1,63 +1,17 @@
-# Nuxt 3 Minimal Starter
+# Ganyu App
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+![GitHub top language](https://img.shields.io/github/languages/top/TheCureliestWalk/nuxt-ganyu)
 
-## Setup
 
-Make sure to install the dependencies:
+## Run on a local machine
+
+It is just a Nuxt Project. So you will need Node.js with NPM (or other package manager) installed.
 
 ```bash
-# npm
+# using npm
 npm install
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+# run
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Now you can view on `http://localhost:3000`

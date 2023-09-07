@@ -7,7 +7,6 @@
         <Button name="Sign In" icon="bx:bxs-user" @click="signInPassword" :disabled="isLoading"/>
         <Button name="Sign In /w GitHub" icon="bx:bxs-user" @click="signInGitHub" :disabled="isLoading"/>
       </div>
-
     </BlockHeader>
   </BlockColumn>
 </template>
