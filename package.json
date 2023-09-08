@@ -4,7 +4,6 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --host 0.0.0.0",
-    "dev:secure": "nuxt dev --host localhost --https --ssl-key private.key --ssl-cert cert.crt --port 3000",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -20,7 +19,8 @@
     "nuxt": "^3.7.0",
     "nuxt-headlessui": "^1.1.4",
     "nuxt-security": "^0.14.4",
-    "prisma": "^5.2.0"
+    "prisma": "^5.2.0",
+    "element-plus": "^2.2.5"
   },
   "dependencies": {
     "@nuxt/image": "^1.0.0-rc.1",
