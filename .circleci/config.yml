@@ -27,7 +27,7 @@ jobs:
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: npm
       - run:
-          name: BUILT AND GENERATE
+          name: BUILD AND GENERATE
           command: npm run build
 
 workflows:
