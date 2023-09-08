@@ -1,63 +1,57 @@
 <template>
-  <div class="p-4 bg-gradient-to-r from-slate-700 to-slate-900 flex flex-col md:flex-row justify-between shadow text-white">
-    <h1 class="text-2xl font-bold">
-      <NuxtLink class="hover:text-sky-500 duration-200" href="/">
-        Ganyu
-      </NuxtLink>
-    </h1>
-    <ul class="flex items-center flex-col md:flex-row">
-      <li v-for="menu in menus">
-        <NuxtLink class="flex gap-1 px-2 items-center hover:text-amber-500 hover:bg-gray-900 duration-100 delay-75" :to="menu.link">
-          <Icon v-if="menu.icon" :name="menu.icon"/>
-          {{ menu.name }}
-        </NuxtLink>
-      </li>
-    </ul>
+  <div v-if="user" class="p-4 bg-gradient-to-r from-slate-700 to-slate-900 flex gap-6 justify-end items-center shadow text-white">
+
+    <div>status: online</div>
+
+    <!-- Profile Button -->
+    <HlPopover>
+      <HlPopoverButton class="outline-none flex items-center ">
+        <NuxtImg src="/ganyu.png" class="w-8 h-8 outline outline-2 outline-offset-2 rounded-full"/>
+        <transition
+            enter-active-class="transition duration-200 ease-out"
+            enter-from-class="translate-y-1 opacity-0"
+            enter-to-class="translate-y-0 opacity-100"
+            leave-active-class="transition duration-150 ease-in"
+            leave-from-class="translate-y-0 opacity-100"
+            leave-to-class="translate-y-1 opacity-0">
+
+            <HlPopoverPanel class="fixed z-10 top-12 right-4 flex flex-col gap-2 bg-slate-700 p-4 shadow rounded">
+              <NuxtLink v-for="menu in menus" :to="menu.link"
+                        class="flex gap-2 items-center p-1 border-b border-slate-700 hover:text-slate-700 hover:bg-slate-300 rounded">
+                <Icon :name="menu.icon"/>
+                {{ menu.name }}
+              </NuxtLink>
+            </HlPopoverPanel>
+
+        </transition>
+      </HlPopoverButton>
+    </HlPopover>
   </div>
 </template>
 
-<script setup lang="ts">
-type MenuType = {
-  name: string,
-  link: string,
-  icon?: string
-}
+<script setup>
+const user = useSupabaseUser()
 
-const menus = ref<MenuType[]>([
-  {
-    name: 'Home',
-    link: '/',
-    icon: 'bx:bxs-home'
-  },
-  {
-    name: 'Apps',
-    link: '/app',
-    icon: 'game-icons:abstract-050'
-  },
+const menus = ref([
   {
     name: 'My Profile',
-    link: '/profile',
-    icon: 'bx:bxs-user'
+    icon: 'bx:bxs-user',
+    link: '/profile'
   },
   {
-    name: 'Register',
-    link: '/register',
-    icon: 'bx:bxs-user'
-  },
-  {
-    name: 'Login',
-    link: '/login',
-    icon: 'bx:bxs-user'
-  },
-  {
-    name: 'Quest/Bounty',
-    link: '/quests',
-    icon: 'fluent-emoji-high-contrast:bubbles'
+    name: 'Mailbox',
+    icon: 'bx:bxs-envelope-open',
+    link: '/mail'
   },
   {
     name: 'Settings',
-    link: '/settings',
-    icon: 'bx:bxs-cog'
-  }
+    icon: 'bx:bxs-cog',
+    link: '/settings'
+  },
+  {
+    name: 'Log Out',
+    icon: 'bx:log-out',
+    link: ''
+  },
 ])
 </script>

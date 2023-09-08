@@ -3,15 +3,15 @@
     <BlockHeader title="Register a New Account" class="max-w-md mx-auto">
       <form class="flex flex-col justify-center items-center gap-2.5">
         <label for="email">Email</label>
-        <input name="email" type="text" v-model="email" class="p-1.5 bg-gray-300 rounded">
+        <ElInput name="email" type="text" v-model="email" class="p-1.5" />
         <label for="email">Password</label>
-        <input name="password" type="password" v-model="password" class="p-1.5 bg-gray-300 rounded">
-        <button type="submit" @click.prevent="signUpPassword" :disabled="isLoading" class="mt-2.5 p-2 bg-amber-500 text-white rounded cursor-pointer">
+        <ElInput name="password" type="password" v-model="password" class="p-1.5" />
+        <ElButton type="success" @click.prevent="signUpPassword" :disabled="isLoading" class="mt-2.5">
           <Icon name="bx:bxs-user"/>
           <span>
             Register / Sign Up
           </span>
-        </button>
+        </ElButton>
       </form>
     </BlockHeader>
   </BlockColumn>

@@ -3,21 +3,21 @@
     <BlockHeader title="Login" class="max-w-md mx-auto">
       <form class="flex flex-col justify-center items-center gap-2.5">
         <label for="email">Email</label>
-        <input name="email" type="text" v-model="email" class="p-1.5 bg-gray-300 rounded">
+        <ElInput name="email" type="text" v-model="email" class="p-1.5" />
         <label for="email">Password</label>
-        <input name="password" type="password" v-model="password" class="p-1.5 bg-gray-300 rounded">
-        <button type="submit" @click.prevent="signInPassword" :disabled="isLoading" class="mt-2.5 p-2 bg-amber-500 text-white rounded cursor-pointer">
+        <ElInput name="password" type="password" v-model="password" class="p-1.5" />
+        <ElButton type="primary" @click.prevent="signInPassword" :disabled="isLoading" class="mt-2.5">
           <Icon name="bx:bxs-user"/>
           <span>
             Login /w Password
           </span>
-        </button>
-        <button type="submit" @click.prevent="signInGitHub" :disabled="isLoading" class="p-2 bg-amber-500 text-white rounded cursor-pointer">
+        </ElButton>
+        <ElButton type="default" @click.prevent="signInGitHub" :disabled="isLoading" class="p-2">
           <Icon name="bx:bxs-user"/>
           <span>
             Login /w GitHub
           </span>
-        </button>
+        </ElButton>
       </form>
     </BlockHeader>
   </BlockColumn>
@@ -39,7 +39,6 @@ const signInPassword = async () => {
     })
     if (error) throw error
     if (!error) navigateTo('/app')
-    alert('Check your email for the login link!')
   } catch (error) {
     alert(error.error_description || error.message)
   } finally {

@@ -1,11 +1,10 @@
 <template>
   <BlockColumn>
-    <BlockHeader title="Profile" class="max-w-md mx-auto" v-if="user">
-      <NuxtImg :v-if="true" src="ganyu.png" class="rounded-full w-32 h-32 mx-auto"/>
-      <h3>{{ user?.email }}</h3>
+    <BlockHeader title="Profile" class="max-w-md mx-auto">
+      <NuxtImg :src="user?.user_metadata?.avatar_url ?? 'ganyu.png'" class="rounded-full w-32 h-32 mx-auto"/>
+      <h3>{{ user?.email ?? 'no email found.'}}</h3>
       <Button name="Logout" icon="bx:log-out" @click="logOut"/>
     </BlockHeader>
-    <p v-else>~You are not logged in.~</p>
   </BlockColumn>
   {{ user }}
 </template>

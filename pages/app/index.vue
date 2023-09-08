@@ -4,21 +4,15 @@
 
 <template>
   <BlockColumn>
-    <BlockHeader title="Tic Tac Toe">
-      <XOBoard/>
-    </BlockHeader>
-    <BlockHeader title="Stock Management">
-      <Button name="Go to Stock Management" link="/app/stock"/>
-    </BlockHeader>
-    <BlockHeader title="Todo">
-      <Todo/>
-    </BlockHeader>
-    <BlockHeader title="Tic Tac Toe">
-
-    </BlockHeader>
-    <BlockHeader title="Tic Tac Toe">
-
-    </BlockHeader>
+    <Block>
+      <NuxtLink to="/app/xo">Tic Tac Toe</NuxtLink>
+    </Block>
+    <Block>
+      <NuxtLink to="/app/todo">Todo</NuxtLink>
+    </Block>
+    <Block>
+      <NuxtLink to="/app/stock">Stock Management</NuxtLink>
+    </Block>
   </BlockColumn>
 </template>
 
