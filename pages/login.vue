@@ -12,7 +12,7 @@
             Login /w Password
           </span>
         </ElButton>
-        <ElButton type="default" @click.prevent="signInGitHub" :disabled="isLoading" class="p-2">
+        <ElButton type="warning" @click.prevent="signInGitHub" :disabled="isLoading" class="p-2">
           <Icon name="bx:bxs-user"/>
           <span>
             Login /w GitHub

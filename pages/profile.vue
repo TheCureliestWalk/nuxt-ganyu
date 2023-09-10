@@ -1,7 +1,7 @@
 <template>
   <BlockColumn>
     <BlockHeader title="Profile" class="max-w-md mx-auto">
-      <NuxtImg :src="user?.user_metadata?.avatar_url ?? 'ganyu.png'" class="rounded-full w-32 h-32 mx-auto"/>
+      <img :src="user?.user_metadata.avatar_url ?? 'ganyu.png'" alt="profile image" class="rounded-full w-32 h-32 mx-auto"/>
       <h3>{{ user?.email ?? 'no email found.'}}</h3>
       <Button name="Logout" icon="bx:log-out" @click="logOut"/>
     </BlockHeader>
@@ -11,7 +11,7 @@
 
 <script setup>
 
-const user = useSupabaseUser()
+const user = ref(useSupabaseUser())
 
 const logOut = async() => {
   const supabase = useSupabaseClient()
@@ -25,4 +25,6 @@ const logOut = async() => {
 
   return navigateTo('/')
 }
+
+watch(user, (val) => user.value = val)
 </script>
