@@ -1,6 +1,7 @@
 <template>
   <BlockColumn>
     <BlockHeader title="Profile" class="max-w-md mx-auto">
+      {{ useUserStore().userData }}
       <img :src="user?.user_metadata.avatar_url ?? 'ganyu.png'" alt="profile image" class="rounded-full w-32 h-32 mx-auto"/>
       <h3>{{ user?.email ?? 'no email found.'}}</h3>
       <Button name="Logout" icon="bx:log-out" @click="logOut"/>
@@ -10,7 +11,7 @@
 </template>
 
 <script setup>
-
+import {useUserStore} from "~/store/userStore";
 const user = ref(useSupabaseUser())
 
 const logOut = async() => {

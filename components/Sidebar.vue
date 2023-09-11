@@ -17,12 +17,12 @@
     </ul>
     <!-- Minimal Size -->
     <ul v-else class="flex flex-col gap-4">
-      <NuxtLink :to="menu.link" v-for="menu in menus" class="flex gap-2 justify-center w-16 h-8 items-center cursor-pointer rounded hover:bg-slate-300 hover:text-slate-900 hover:font-bold duration-100">
-        <Icon :name="menu.icon" size="20"/>
+      <NuxtLink :to="menu.link" v-for="menu in menus" class="flex gap-2 justify-center w-16 h-16 items-center cursor-pointer rounded hover:bg-slate-300 hover:text-slate-900 hover:font-bold duration-100">
+        <Icon :name="menu.icon" size="24"/>
       </NuxtLink>
     </ul>
     <!-- Collapse button -->
-    <button @click="() => isCollapse = !isCollapse" class="mt-8 p-2 bg-slate-800 hover:bg-slate-300 hover:text-slate-900 duration-100">
+    <button @click="() => isCollapse = !isCollapse" class="mt-8 py-2 bg-slate-800 hover:bg-slate-300 hover:text-slate-900 duration-100">
       <Icon name="bx:arrow-back"/>
     </button>
 

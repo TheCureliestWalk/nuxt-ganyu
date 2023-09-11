@@ -13,7 +13,9 @@ export default defineNuxtConfig({
     'nuxt-lodash',
     '@vite-pwa/nuxt',
     'nuxt-security',
-    '@nuxtjs/device'
+    '@nuxtjs/device',
+    '@pinia/nuxt',
+    '@vueuse/nuxt'
   ],
   supabase: {
     redirect: false
