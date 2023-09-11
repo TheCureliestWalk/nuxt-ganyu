@@ -5,12 +5,20 @@
         <label for="email">Email</label>
         <ElInput name="email" type="text" v-model="email" class="p-1.5" />
         <label for="email">Password</label>
-        <ElInput name="password" type="password" v-model="password" class="p-1.5" />
-        <ElButton type="success" @click.prevent="signUpPassword" :disabled="isLoading" class="mt-2.5">
-          <Icon name="bx:bxs-user"/>
-          <span>
-            Register / Sign Up
-          </span>
+        <ElInput
+          name="password"
+          type="password"
+          v-model="password"
+          class="p-1.5"
+        />
+        <ElButton
+          type="success"
+          @click.prevent="signUpPassword"
+          :disabled="isLoading"
+          class="mt-2.5"
+        >
+          <Icon :name="isLoading? 'svg-spinners:180-ring' : 'bx:bxs-user'" />
+          <span> Register / Sign Up </span>
         </ElButton>
       </form>
     </BlockHeader>
@@ -18,29 +26,34 @@
 </template>
 
 <script setup>
-
-const supabase = useSupabaseClient()
-const email = ref('')
-const password = ref('')
-const isLoading = ref(false)
-
+const supabase = useSupabaseClient();
+const email = ref('');
+const password = ref('');
+const isLoading = ref(false);
 const signUpPassword = async () => {
   try {
-    isLoading.value = true
+    isLoading.value = true;
     const { data, error } = await supabase.auth.signUp({
       email: email.value,
-      password: password.value
-    })
-    if (error) throw error
+      password: password.value,
+    });
+    if (error) throw error;
     if (data) {
-      alert('Registered! Please comfirm your email.')
-      navigateTo('/')
+      await createNewProfileData(data)
     }
-
   } catch (error) {
-    alert(error)
+    alert(error);
   } finally {
-    isLoading.value = false
+    isLoading.value = false;
   }
+};
+
+async function createNewProfileData(user) {
+  const { error } = await supabase.from('profile').upsert({ user_id: user.user.id, email: user.user.email})
+  if (error) {
+    alert(error.message)
+    return;
+  }
+  return navigateTo('/')
 }
 </script>

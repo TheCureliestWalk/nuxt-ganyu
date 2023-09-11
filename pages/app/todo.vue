@@ -1,6 +1,6 @@
 <script setup>
-  const supabase = useSupabaseClient()
-  const { data, error } = supabase.from('todo').select('*')
+const supabase = useSupabaseClient();
+const { data, error } = supabase.from('todo').select('*');
 </script>
 
 <template>

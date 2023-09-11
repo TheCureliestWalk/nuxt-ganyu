@@ -2,7 +2,7 @@
 
 export default defineNuxtConfig({
   ssr: true,
-  devtools: {enabled: true},
+  devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
     'nuxt-headlessui',
@@ -15,20 +15,20 @@ export default defineNuxtConfig({
     'nuxt-security',
     '@nuxtjs/device',
     '@pinia/nuxt',
-    '@vueuse/nuxt'
+    '@vueuse/nuxt',
   ],
   supabase: {
-    redirect: false
+    redirect: false,
   },
   headlessui: {
-    prefix: 'Hl'
+    prefix: 'Hl',
   },
   experimental: {
-    payloadExtraction: false
+    payloadExtraction: false,
   },
   app: {
     head: {
-      title: 'Ganyu App'
-    }
+      title: 'Ganyu App',
+    },
   },
-})
+});

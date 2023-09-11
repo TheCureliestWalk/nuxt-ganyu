@@ -7,15 +7,14 @@
 </template>
 
 <script setup>
-  const supabase = useSupabaseClient()
+const supabase = useSupabaseClient();
 
-  const tasks = ref({})
-  const { data, error } = await supabase.from('todo').select('*')
-    if (data) {
-      tasks.value = data.slice()
-    }
-    if (error) {
-      alert(error.message)
-    }
-
+const tasks = ref({});
+const { data, error } = await supabase.from('todo').select('*');
+if (data) {
+  tasks.value = data.slice();
+}
+if (error) {
+  alert(error.message);
+}
 </script>

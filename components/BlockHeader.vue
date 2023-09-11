@@ -1,8 +1,7 @@
 <script setup lang="ts">
-const props = defineProps<
-    {
-      title: String
-    }>()
+const props = defineProps<{
+  title: String;
+}>();
 </script>
 
 <template>
@@ -11,7 +10,7 @@ const props = defineProps<
       <h1 class="font-bold text-base mb-3">{{ props.title }}</h1>
     </div>
     <div class="p-4 space-y-2.5">
-      <slot/>
+      <slot />
     </div>
   </div>
 </template>

@@ -1,8 +1,8 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
 export const useUserStore = defineStore('userStore', {
-    state: () => ({
-        userLoggedIn: false,
-        userData: {}
-    })
-})
+  state: () => ({
+    userLoggedIn: false,
+    userData: {},
+  }),
+});

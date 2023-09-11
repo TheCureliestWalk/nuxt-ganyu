@@ -1,5 +1,5 @@
 <template>
   <BlockHeader title="Tic Tac Toe">
-    <XOBoard/>
+    <XOBoard />
   </BlockHeader>
 </template>
