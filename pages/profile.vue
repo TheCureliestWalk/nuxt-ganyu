@@ -39,10 +39,10 @@ const logOut = async () => {
 };
 
 const onSave = async () => {
-  const { data, error } = await supabase.from('profile').upsert({
+  const { data, error } = await supabase.from('profile').update({
     bio: user.value.bio,
     picture: user.value.picture
-  });
+  }).eq('user_id', supabaseAuthUser?.value.id)
   if (error) {
     alert(error.message)
     return;
