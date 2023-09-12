@@ -11,7 +11,7 @@
       </div>
       <span>Name</span>
       <ElInput v-model="name" />
-      <ElButton type="success" @click="ElMessage('Settings saved.')">
+      <ElButton type="success" @click="onSave">
         <Icon name="bx:bxs-save" />
         Save
       </ElButton>
@@ -20,11 +20,12 @@
 </template>
 
 <script setup lang="ts">
+const supabase = useSupabaseClient();
 const name = ref<string>('');
 
 onMounted(() => {
   const user = useSupabaseUser();
-  name.value = user?.value?.user_metadata.name ?? 'no username defined';
+  name.value = user?.value?.user_metadata.name ?? '';
 });
 </script>
 

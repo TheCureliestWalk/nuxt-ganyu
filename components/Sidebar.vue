@@ -32,7 +32,6 @@
         :to="menu.link"
         v-for="menu in menus"
         class="flex gap-2 justify-center w-16 h-16 items-center cursor-pointer rounded hover:bg-slate-300 hover:text-slate-900 hover:font-bold duration-100"
-        :class="[{ 'hide': menu.hideWhenAuth }]"
       >
         <Icon :name="menu.icon" size="24" />
       </NuxtLink>
@@ -42,7 +41,7 @@
       @click="() => (isCollapse = !isCollapse)"
       class="mt-8 py-2 bg-slate-800 hover:bg-slate-300 hover:text-slate-900 duration-100"
     >
-      <Icon name="bx:arrow-back" />
+      <Icon name="bx:arrow-back" :class="{ 'rotate-180': !isCollapse }" />
     </button>
   </div>
 </template>
@@ -52,13 +51,13 @@ import { useStorage } from '@vueuse/core';
 
 type MenuType = {
   name: string;
-  link: string | undefined;
-  icon?: string | undefined;
+  link: string;
+  icon?: string;
   onlyAuthed?: boolean;
   hideWhenAuth?: boolean;
 };
 
-const isCollapse = ref(true);
+const isCollapse = useStorage('sidebar-collapse', true);
 
 const menus = ref<MenuType[]>([
   {
@@ -66,49 +65,49 @@ const menus = ref<MenuType[]>([
     link: '/',
     icon: 'bx:bxs-home',
     onlyAuthed: false,
-    hideWhenAuth: false
+    hideWhenAuth: false,
   },
   {
     name: 'Apps',
     link: '/app',
     icon: 'game-icons:abstract-050',
     onlyAuthed: true,
-    hideWhenAuth: false
+    hideWhenAuth: false,
   },
   {
     name: 'My Profile',
     link: '/profile',
     icon: 'bx:user',
     onlyAuthed: true,
-    hideWhenAuth: true
+    hideWhenAuth: true,
   },
   {
     name: 'Register',
     link: '/register',
     icon: 'bx:bxs-user-plus',
     onlyAuthed: false,
-    hideWhenAuth: true
+    hideWhenAuth: true,
   },
   {
     name: 'Login',
     link: '/login',
     icon: 'bx:bxs-user',
     onlyAuthed: false,
-    hideWhenAuth: true
+    hideWhenAuth: true,
   },
   {
     name: 'Dashboard',
     link: '/dashboard',
     icon: 'fluent-emoji-high-contrast:bubbles',
     onlyAuthed: true,
-    hideWhenAuth: true
+    hideWhenAuth: true,
   },
   {
     name: 'Settings',
     link: '/settings',
     icon: 'bx:bxs-cog',
     onlyAuthed: true,
-    hideWhenAuth: true
+    hideWhenAuth: true,
   },
 ]);
 </script>

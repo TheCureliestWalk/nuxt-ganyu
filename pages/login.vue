@@ -1,35 +1,38 @@
 <template>
   <BlockColumn>
-    <BlockHeader title="Login" class="max-w-md mx-auto">
-      <form class="flex flex-col justify-center items-center gap-2.5">
+    <BlockHeader title="Login" class="w-full max-w-md mx-auto">
+      <div class="flex flex-col items-center gap-2.5">
         <label for="email">Email</label>
-        <ElInput name="email" type="text" v-model="email" class="p-1.5" />
+        <ElInput name="email" type="text" v-model="email" />
         <label for="email">Password</label>
-        <ElInput
-          name="password"
-          type="password"
-          v-model="password"
-          class="p-1.5"
-        />
+        <ElInput name="password" type="password" v-model="password" />
+
         <ElButton
-          type="primary"
+          type="success"
           @click.prevent="signInPassword"
           :disabled="isLoading"
-          class="mt-2.5"
+          class="w-full"
         >
-          <Icon :name="isLoading ? 'svg-spinners:180-ring' : 'bx:bxs-user'" />
-          <span> Login /w Password </span>
+          <div class="flex gap-1">
+            <Icon :name="isLoading ? 'svg-spinners:180-ring' : 'bx:bxs-user'" />
+            <span> Login /w Password </span>
+          </div>
         </ElButton>
+
         <ElButton
           type="warning"
           @click.prevent="signInGitHub"
           :disabled="isLoading"
-          class="p-2"
+          class="w-full"
         >
-          <Icon :name="isLoading ? 'svg-spinners:180-ring' : 'bx:bxs-user'" />
-          <span> Login /w GitHub </span>
+          <div class="flex gap-1">
+            <Icon
+              :name="isLoading ? 'svg-spinners:180-ring' : 'bx:bxl-github'"
+            />
+            <span> Login /w GitHub </span>
+          </div>
         </ElButton>
-      </form>
+      </div>
     </BlockHeader>
   </BlockColumn>
 </template>
@@ -48,7 +51,13 @@ const signInPassword = async () => {
       password: password.value,
     });
     if (error) throw error;
-    if (!error) navigateTo('/app');
+    if (!error) {
+      ElMessage({
+        message: 'Login success.',
+        type: 'success',
+      });
+      return navigateTo('/app');
+    }
   } catch (error) {
     alert(error.error_description || error.message);
   } finally {
@@ -64,6 +73,13 @@ const signInGitHub = async () => {
     });
 
     if (error) throw error;
+    if (!error) {
+      ElMessage({
+        message: 'Login success.',
+        type: 'success',
+      });
+      return navigateTo('/app');
+    }
   } catch (error) {
     alert(error.error_description || error.message);
   } finally {

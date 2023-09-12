@@ -17,7 +17,7 @@
           :disabled="isLoading"
           class="mt-2.5"
         >
-          <Icon :name="isLoading? 'svg-spinners:180-ring' : 'bx:bxs-user'" />
+          <Icon :name="isLoading ? 'svg-spinners:180-ring' : 'bx:bxs-user'" />
           <span> Register / Sign Up </span>
         </ElButton>
       </form>
@@ -39,7 +39,7 @@ const signUpPassword = async () => {
     });
     if (error) throw error;
     if (data) {
-      await createNewProfileData(data)
+      await createNewProfileData(data);
     }
   } catch (error) {
     alert(error);
@@ -49,11 +49,13 @@ const signUpPassword = async () => {
 };
 
 async function createNewProfileData(user) {
-  const { error } = await supabase.from('profile').upsert({ user_id: user.user.id, email: user.user.email})
+  const { error } = await supabase
+    .from('profile')
+    .upsert({ user_id: user.user.id, email: user.user.email });
   if (error) {
-    alert(error.message)
+    alert(error.message);
     return;
   }
-  return navigateTo('/')
+  return navigateTo('/');
 }
 </script>
