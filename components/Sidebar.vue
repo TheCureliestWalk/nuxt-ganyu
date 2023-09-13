@@ -21,6 +21,7 @@
         :to="menu.link"
         v-for="menu in menus"
         class="flex gap-2 items-center p-2 cursor-pointer rounded hover:bg-slate-300 hover:text-slate-900 hover:font-bold duration-100 hover:scale-110 hover:translate-x-5"
+        :class="{ 'hidden': (!user && menu.onlyAuthed) || (user && menu.hideWhenAuth) }"
       >
         <Icon :name="menu.icon" />
         <span>{{ menu.name }}</span>
@@ -48,6 +49,7 @@
 
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core';
+const user = useSupabaseUser()
 
 type MenuType = {
   name: string;
@@ -79,7 +81,7 @@ const menus = ref<MenuType[]>([
     link: '/profile',
     icon: 'bx:user',
     onlyAuthed: true,
-    hideWhenAuth: true,
+    hideWhenAuth: false,
   },
   {
     name: 'Register',
@@ -100,14 +102,14 @@ const menus = ref<MenuType[]>([
     link: '/dashboard',
     icon: 'fluent-emoji-high-contrast:bubbles',
     onlyAuthed: true,
-    hideWhenAuth: true,
+    hideWhenAuth: false,
   },
   {
     name: 'Settings',
     link: '/settings',
     icon: 'bx:bxs-cog',
     onlyAuthed: true,
-    hideWhenAuth: true,
+    hideWhenAuth: false,
   },
 ]);
 </script>

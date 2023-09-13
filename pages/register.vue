@@ -39,7 +39,7 @@ const signUpPassword = async () => {
     });
     if (error) throw error;
     if (data) {
-      await createNewProfileData(data);
+      return navigateTo('/');
     }
   } catch (error) {
     alert(error);
@@ -47,15 +47,4 @@ const signUpPassword = async () => {
     isLoading.value = false;
   }
 };
-
-async function createNewProfileData(user) {
-  const { error } = await supabase
-    .from('profile')
-    .upsert({ user_id: user.user.id, email: user.user.email });
-  if (error) {
-    alert(error.message);
-    return;
-  }
-  return navigateTo('/');
-}
 </script>
