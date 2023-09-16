@@ -13,9 +13,11 @@ const { data } = await useFetch<{ posts: posts[] }>(
 </script>
 
 <template>
-  <NuxtLink to="/" v-for="post in data.posts" :key="post.id">{{
-    post.title
-  }}</NuxtLink>
+  <div>
+    <NuxtLink to="/" v-for="post in data.posts" :key="post.id">{{
+      post.title
+    }}</NuxtLink>
+  </div>
 </template>
 
 <style scoped>

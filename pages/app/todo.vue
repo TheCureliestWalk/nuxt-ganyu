@@ -1,6 +1,6 @@
 <script setup>
 const supabase = useSupabaseClient();
-const { data, error } = supabase.from('todo').select('*');
+const { data, error } = await supabase.from('profile').select('*');
 </script>
 
 <template>

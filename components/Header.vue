@@ -1,15 +1,26 @@
 <template>
   <div
-    v-if="user"
-    class="p-4 bg-gradient-to-r from-slate-700 to-slate-900 flex gap-6 justify-end items-center shadow text-white"
+  v-if="computedUsername"
+    class="flex gap-2 p-4 bg-gradient-to-r from-slate-700 to-slate-900 flex gap-6 justify-end items-center shadow text-white"
   >
-    <div>status: online</div>
+    <!-- Account Balance -->
+    <div class="flex gap-1 items-center">
+      <Icon name="bx:coin" />
+      <span>{{ computedBalance }}</span>
+    </div>
+    <!-- Status -->
+    <div class="flex gap-1 items-center">
+      <i class="rounded-full p-1 bg-emerald-300" />
+      <span>online</span>
+      <span> | </span>
+      <span>{{ computedUsername }}</span>
+    </div>
 
     <!-- Profile Button -->
     <HlPopover>
       <HlPopoverButton class="outline-none flex items-center">
-        <NuxtImg
-          src="/ganyu.png"
+        <img
+          :src="computedImgUrl"
           class="w-8 h-8 outline outline-2 outline-offset-2 rounded-full"
         />
         <transition
@@ -39,8 +50,27 @@
 </template>
 
 <script setup>
-const user = useSupabaseUser();
 
+const profile = useProfile();
+
+const computedUsername = computed(() => {
+  
+  if (profile.value) return profile.value.username
+  return null;
+});
+
+const computedBalance = computed(() => {
+  if (profile.value) return profile.value.balance.toLocaleString();
+  return null;
+})
+
+const computedImgUrl = computed(() => {
+  if (profile.value.profile_picture) {
+    return profile.value.profile_picture;
+  }
+
+  return '/ganyu.png';
+});
 const menus = ref([
   {
     name: 'My Profile',

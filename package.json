@@ -8,7 +8,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "prepare": "husky install",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "type": "npx supabase gen types typescript --project-id jbdwwychoocgauttndvp > types/database.types.ts"
   },
   "devDependencies": {
     "@element-plus/nuxt": "^1.0.6",

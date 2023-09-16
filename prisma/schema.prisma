@@ -7,87 +7,40 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model failed_jobs {
-  id         BigInt   @id @default(autoincrement())
-  uuid       String   @unique(map: "failed_jobs_uuid_unique") @db.VarChar(255)
-  connection String
-  queue      String
-  payload    String
-  exception  String
-  failed_at  DateTime @default(now()) @db.Timestamp(0)
-}
-
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model inventory {
-  id           BigInt    @id @default(autoincrement())
-  created_at   DateTime? @default(now()) @db.Timestamptz(6)
-  barcode      String?
-  name         String?
-  quantity     BigInt?
-  sell_price   BigInt?
-  cost         BigInt?
-  product_type String?
-  isSelected   Boolean?
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime? @default(now()) @db.Timestamptz(6)
+  barcode     String?
+  name        String?
+  quantity    Int?
+  sellPrice   Int?
+  cost        Int?
+  productType String?
 }
 
-model migrations {
-  id        Int    @id @default(autoincrement())
-  migration String @db.VarChar(255)
-  batch     Int
+model todo {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now()) @db.Timestamptz(6)
+  UserId     String?
+  name       String?
+  isComplete Boolean? @default(false)
 }
 
-model password_reset_tokens {
-  email      String    @id @db.VarChar(255)
-  token      String    @db.VarChar(255)
-  created_at DateTime? @db.Timestamp(0)
+model balance {
+  id       Int      @id @default(autoincrement())
+  createAt DateTime @default(now()) @db.Timestamptz(6)
+  amount   Int?
+  userId   String?
+  status   String?
 }
 
-model personal_access_tokens {
-  id             BigInt    @id @default(autoincrement())
-  tokenable_type String    @db.VarChar(255)
-  tokenable_id   BigInt
-  name           String    @db.VarChar(255)
-  token          String    @unique(map: "personal_access_tokens_token_unique") @db.VarChar(64)
-  abilities      String?
-  last_used_at   DateTime? @db.Timestamp(0)
-  expires_at     DateTime? @db.Timestamp(0)
-  created_at     DateTime? @db.Timestamp(0)
-  updated_at     DateTime? @db.Timestamp(0)
-
-  @@index([tokenable_type, tokenable_id], map: "personal_access_tokens_tokenable_type_tokenable_id_index")
-}
-
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model profile {
+model user {
   created_at DateTime @default(now()) @db.Timestamptz(6)
   username   String?
   email      String?
   picture    String?
   bio        String?
-  id         BigInt   @id @unique @default(autoincrement())
-  user_id    String?  @db.Uuid
-}
-
-model test_trigger {
-  id         BigInt   @id @default(autoincrement())
-  created_at DateTime @default(now()) @db.Timestamptz(6)
-  text       String?
-}
-
-model todo {
-  id          BigInt   @id @default(autoincrement())
-  created_at  DateTime @default(now()) @db.Timestamptz(6)
-  name        String?
-  is_complete Boolean? @default(false)
-}
-
-model users {
-  id                BigInt    @id @default(autoincrement())
-  name              String    @db.VarChar(255)
-  email             String    @unique(map: "users_email_unique") @db.VarChar(255)
-  email_verified_at DateTime? @db.Timestamp(0)
-  password          String    @db.VarChar(255)
-  remember_token    String?   @db.VarChar(100)
-  created_at        DateTime? @db.Timestamp(0)
-  updated_at        DateTime? @db.Timestamp(0)
+  id         Int      @id @unique @default(autoincrement())
+  userId     String?
 }

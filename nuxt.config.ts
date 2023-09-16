@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     'nuxt-lodash',
     '@vite-pwa/nuxt',
-    'nuxt-security',
+    // 'nuxt-security',
     '@nuxtjs/device',
     '@pinia/nuxt',
     '@vueuse/nuxt',

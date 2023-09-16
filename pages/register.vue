@@ -1,28 +1,30 @@
 <template>
-  <BlockColumn>
-    <BlockHeader title="Register a New Account" class="max-w-md mx-auto">
-      <form class="flex flex-col justify-center items-center gap-2.5">
-        <label for="email">Email</label>
-        <ElInput name="email" type="text" v-model="email" class="p-1.5" />
-        <label for="email">Password</label>
-        <ElInput
-          name="password"
-          type="password"
-          v-model="password"
-          class="p-1.5"
-        />
-        <ElButton
-          type="success"
-          @click.prevent="signUpPassword"
-          :disabled="isLoading"
-          class="mt-2.5"
-        >
-          <Icon :name="isLoading ? 'svg-spinners:180-ring' : 'bx:bxs-user'" />
-          <span> Register / Sign Up </span>
-        </ElButton>
-      </form>
-    </BlockHeader>
-  </BlockColumn>
+  <div>
+    <BlockColumn>
+      <BlockHeader title="Register a New Account" class="max-w-md mx-auto">
+        <form class="flex flex-col justify-center items-center gap-2.5">
+          <label for="email">Email</label>
+          <ElInput name="email" type="text" v-model="email" class="p-1.5" />
+          <label for="email">Password</label>
+          <ElInput
+            name="password"
+            type="password"
+            v-model="password"
+            class="p-1.5"
+          />
+          <ElButton
+            type="success"
+            @click.prevent="signUpPassword"
+            :disabled="isLoading"
+            class="mt-2.5"
+          >
+            <Icon :name="isLoading ? 'svg-spinners:180-ring' : 'bx:bxs-user'" />
+            <span> Register / Sign Up </span>
+          </ElButton>
+        </form>
+      </BlockHeader>
+    </BlockColumn>
+  </div>
 </template>
 
 <script setup>

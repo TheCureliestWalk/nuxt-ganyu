@@ -1,11 +1,9 @@
 <script setup lang="ts">
 const props = defineProps<{
   name: string;
-  type?: 'text' | 'password';
   disabled?: boolean;
+  placeholder?: string;
 }>();
-
-const value = ref('');
 </script>
 
 <template>
@@ -13,18 +11,17 @@ const value = ref('');
     <label :for="props.name" class="text-base text-gray-700 font-bold">{{
       props.name
     }}</label>
-    <input
-      :type="props.type ?? 'text'"
+    <textarea
       :name="props.name"
       class="w-full p-2.5 bg-white/70 rounded border border-gray-300"
       :disabled="props.disabled"
-      @input="$emit('value', $event.target.value)"
-    />
+      :placeholder="props.placeholder"
+    ></textarea>
   </div>
 </template>
 
 <style>
-input:disabled {
+textarea:disabled {
   @apply bg-gray-300;
 }
 </style>
