@@ -5,7 +5,11 @@
     <Sidebar />
     <div class="w-full">
       <Header />
-      <NuxtPage class="p-4" />
+      <Suspense>
+        <template #default>
+          <NuxtPage class="p-4" />
+        </template>
+      </Suspense>
     </div>
   </div>
 </template>

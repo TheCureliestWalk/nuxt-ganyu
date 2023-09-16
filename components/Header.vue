@@ -1,6 +1,6 @@
 <template>
   <div
-  v-if="computedUsername"
+    v-if="computedUsername"
     class="flex gap-2 p-4 bg-gradient-to-r from-slate-700 to-slate-900 flex gap-6 justify-end items-center shadow text-white"
   >
     <!-- Account Balance -->
@@ -50,19 +50,17 @@
 </template>
 
 <script setup>
-
 const profile = useProfile();
 
 const computedUsername = computed(() => {
-  
-  if (profile.value) return profile.value.username
+  if (profile.value) return profile.value.username;
   return null;
 });
 
 const computedBalance = computed(() => {
   if (profile.value) return profile.value.balance.toLocaleString();
   return null;
-})
+});
 
 const computedImgUrl = computed(() => {
   if (profile.value.profile_picture) {

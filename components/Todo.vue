@@ -1,5 +1,10 @@
 <template>
   <div>
+    <form class="flex gap-2">
+      <label for="task">Task: </label>
+      <input name="task" type="text" />
+      <input type="submit" value="+ new task" />
+    </form>
     <ul>
       <li v-for="task in tasks" class="list-disc">{{ task.name }}</li>
     </ul>

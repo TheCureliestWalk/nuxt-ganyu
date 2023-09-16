@@ -65,8 +65,8 @@
 </template>
 
 <script setup lang="ts">
-import type { Database } from '~/types/database.types'
-const supabase = useSupabaseClient<Database>()
+import type { Database } from '~/types/database.types';
+const supabase = useSupabaseClient<Database>();
 
 interface IProfile {
   id?: string;
@@ -76,7 +76,7 @@ interface IProfile {
   profile_picture?: string;
 }
 
-let profile = ref<IProfile>({});
+const profile = ref<IProfile>({});
 
 const computedImgUrl = computed(() => {
   if (profile.value.profile_picture) {
@@ -86,17 +86,15 @@ const computedImgUrl = computed(() => {
   return '/ganyu.png';
 });
 
-
 const handleUploadImg = async () => {
-  const file = (document.getElementById(
-    'profileUpload'
-  ) as HTMLInputElement).files?.[0];
+  const file = (document.getElementById('profileUpload') as HTMLInputElement)
+    .files?.[0];
   if (!file) {
     return;
   }
 
-  const fileExt = file.name.split('.').pop()
-// Upload Image to Storage
+  const fileExt = file.name.split('.').pop();
+  // Upload Image to Storage
 
   const { data, error } = await supabase.storage
     .from('profile_img')
@@ -110,26 +108,22 @@ const handleUploadImg = async () => {
     return;
   }
   if (data) {
-    // Get Image Public URL 
-    const { data: getUrl } = supabase.storage
-    .from('profile_img')
-    .getPublicUrl(`public/${profile.value.id}.${fileExt}`);
+    // Get Image Public URL
+    const { data: getUrl } = await supabase.storage
+      .from('profile_img')
+      .getPublicUrl(`public/${profile.value.id}.${fileExt}`);
 
-  if (getUrl) {
-    profile.value.profile_picture = getUrl.publicUrl
-    onSave()
-  }
+    if (getUrl) {
+      profile.value.profile_picture = getUrl.publicUrl;
+      onSave();
+    }
 
-  return ElMessage({
+    return ElMessage({
       message: 'Image uploaded successfully',
       type: 'success',
-    })
-
+    });
   }
-
-
-  
-}
+};
 
 const onSave = async () => {
   const { error } = await supabase
@@ -162,13 +156,9 @@ const logOut = async () => {
 
 onMounted(() => {
   const getProfile = useProfile();
-  if(!getProfile.value) {
-    return;
-  }
 
-   profile.value = getProfile.value;
+  profile.value = getProfile.value;
 });
-
 </script>
 
 <style scoped>
