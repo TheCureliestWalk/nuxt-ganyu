@@ -1,55 +1,38 @@
+<script setup>
+const { status, data, signIn, signOut } = useAuth();
+</script>
+
 <template>
   <div>
-    <img :src="computedImgUrl" alt="profile image" class="rounded-full p-2" />
-  </div>
-  <div class="p-2 bg-emerald-300">
-    <input type="file" accept="image/*" @change="handleUploadImg" />
-  </div>
+    <div
+      v-if="status === 'authenticated'"
+      class="flex items-center justify-center gap-4 max-w-md shadow-md mx-auto rounded bg-white p-4"
+    >
+      <img
+        :src="data.user.image"
+        alt="Avatar"
+        class="w-[128px] h-[128px] rounded-full ring-2 ring-green-400 shadow"
+      />
 
-  <div>
-    {{ file }}
-  </div>
+      <div class="flex flex-col gap-2">
+        <h1 class="text-2xl font-bold text-center">🏷️ {{ data.user.name }}</h1>
+        <p class="text-gray-500 text-sm text-center">{{ data.user.email }}</p>
+        <button
+          @click="signOut"
+          class="px-4 py-2 bg-red-400 rounded text-white shadow hover:bg-red-500 duration-200"
+        >
+          Sign Out
+        </button>
+      </div>
+    </div>
 
-  <div>
-    {{ useProfile() }}
+    <p>{{ useUser() }}</p>
+    <p class="text-purple-500">status: {{ status }}</p>
+    <p class="text-red-500">data: {{ data }}</p>
+    <div v-if="status === 'unauthenticated'">
+      <button @click="signIn" class="px-4 py-2 bg-green-400 text-white">
+        Sign In
+      </button>
+    </div>
   </div>
 </template>
-
-<script setup>
-const supabase = useSupabaseClient();
-const user = useSupabaseUser();
-
-const file = ref();
-const imgUrl = ref(null);
-const computedImgUrl = computed(() => {
-  if (imgUrl.value) {
-    return imgUrl.value;
-  } else {
-    return 'https://via.placeholder.com/150';
-  }
-});
-
-onMounted(() => {
-  downloadProfileImg();
-});
-
-function handleUploadImg(e) {
-  const event = e.target.files;
-  console.log(event);
-  file.value = event[0];
-}
-
-async function downloadProfileImg() {
-  const { data, error } = await supabase.storage
-    .from('avatars')
-    .download(`public/profile/${user?.value.id}.jpg`);
-
-  if (data) {
-    console.log(data);
-    imgUrl.value = data;
-  }
-  if (error) {
-    console.log('Error downloading image: ', error.message);
-  }
-}
-</script>
