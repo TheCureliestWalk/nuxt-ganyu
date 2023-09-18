@@ -18,6 +18,9 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@sidebase/nuxt-auth',
   ],
+  auth: {
+    enabled: true,
+  },
   supabase: {
     redirect: false,
   },

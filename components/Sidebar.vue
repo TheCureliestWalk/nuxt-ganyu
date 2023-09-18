@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core';
-const user = useSupabaseUser();
+const { data: user } = useAuth();
 
 type MenuType = {
   name: string;

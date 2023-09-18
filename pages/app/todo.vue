@@ -21,7 +21,7 @@ const supabase = useSupabaseClient();
 
 const tasks = ref([]);
 
-onMounted(async () => {
+mounted(async () => {
   const { data, error } = await supabase.from('todo').select('*');
   if (data) {
     tasks.value = data.slice();

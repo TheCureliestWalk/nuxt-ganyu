@@ -3,13 +3,11 @@
     class="flex bg-gradient-to-r from-sky-100 to-pink-100 w-full min-h-screen"
   >
     <Sidebar />
+
     <div class="w-full">
       <Header />
-      <Suspense>
-        <template #default>
-          <NuxtPage class="p-4" />
-        </template>
-      </Suspense>
+      <NuxtLoadingIndicator />
+      <NuxtPage class="p-4" />
     </div>
   </div>
 </template>
