@@ -16,7 +16,11 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     '@pinia/nuxt',
     '@vueuse/nuxt',
+    '@sidebase/nuxt-auth',
   ],
+  auth: {
+    enabled: true,
+  },
   supabase: {
     redirect: false,
   },

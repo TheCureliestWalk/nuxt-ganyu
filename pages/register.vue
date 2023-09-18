@@ -1,27 +1,41 @@
 <template>
   <div>
     <BlockColumn>
-      <BlockHeader title="Register a New Account" class="max-w-md mx-auto">
-        <form class="flex flex-col justify-center items-center gap-2.5">
-          <label for="email">Email</label>
-          <ElInput name="email" type="text" v-model="email" class="p-1.5" />
-          <label for="email">Password</label>
-          <ElInput
-            name="password"
-            type="password"
-            v-model="password"
-            class="p-1.5"
+      <BlockHeader
+        title="Register a New Account"
+        class="w-full max-w-md mx-auto"
+      >
+        <div class="flex flex-col items-center gap-2.5">
+          <label for="email" class="font-bold">Email</label>
+          <input
+            type="text"
+            class="w-min-md w-full py-2 px-4 rounded text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            v-model="email"
+            placeholder="user@email.com"
           />
-          <ElButton
-            type="success"
-            @click.prevent="signUpPassword"
+          <label for="email" class="font-bold">Password</label>
+          <input
+            type="text"
+            class="w-min-md w-full py-2 px-4 rounded text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            v-model="password"
+            placeholder="your secret password"
+          />
+
+          <button
+            @click.prevent="signInPassword"
             :disabled="isLoading"
-            class="mt-2.5"
+            class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded"
           >
-            <Icon :name="isLoading ? 'svg-spinners:180-ring' : 'bx:bxs-user'" />
-            <span> Register / Sign Up </span>
-          </ElButton>
-        </form>
+            <div
+              class="flex gap-1 items-center justify-center font-semibold tracking-wide"
+            >
+              <Icon
+                :name="isLoading ? 'svg-spinners:180-ring' : 'bx:bxs-user-plus'"
+              />
+              <span> Register </span>
+            </div>
+          </button>
+        </div>
       </BlockHeader>
     </BlockColumn>
   </div>

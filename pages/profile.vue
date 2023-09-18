@@ -3,6 +3,32 @@
     <BlockColumn>
       <BlockHeader title="Profile" class="w-full max-w-xl mx-auto">
         <div class="flex gap-2 flex-col items-center justify-center">
+          <div
+            v-if="status === 'authenticated'"
+            class="flex items-center justify-center gap-4 max-w-md shadow-md mx-auto rounded bg-white p-4"
+          >
+            <img
+              :src="data.user.image"
+              alt="Avatar"
+              class="w-[128px] h-[128px] rounded-full ring-2 ring-green-400 shadow"
+            />
+
+            <div class="flex flex-col gap-2">
+              <h1 class="text-2xl font-bold text-center">
+                🏷️ {{ data.user.name }}
+              </h1>
+              <p class="text-gray-500 text-sm text-center">
+                {{ data.user.email }}
+              </p>
+              <button
+                @click="signOut"
+                class="px-4 py-2 bg-red-400 rounded text-white shadow hover:bg-red-500 duration-200"
+              >
+                Sign Out
+              </button>
+            </div>
+          </div>
+
           <img
             :src="computedImgUrl"
             class="block items-center justify-center rounded-full ring-1 ring-purple-400 shadow w-[128px] h-[128px]"
@@ -67,6 +93,8 @@
 <script setup lang="ts">
 import type { Database } from '~/types/database.types';
 const supabase = useSupabaseClient<Database>();
+
+const { data, status, signOut } = useAuth();
 
 interface IProfile {
   id?: string;

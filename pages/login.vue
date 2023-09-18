@@ -3,38 +3,51 @@
     <BlockColumn>
       <BlockHeader title="Login" class="w-full max-w-md mx-auto">
         <div class="flex flex-col items-center gap-2.5">
-          <label for="email">Email</label>
-          <ElInput name="email" type="text" v-model="email" />
-          <label for="email">Password</label>
-          <ElInput name="password" type="password" v-model="password" />
+          <label for="email" class="font-bold">Email</label>
+          <input
+            type="text"
+            class="w-min-md w-full py-2 px-4 rounded text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            v-model="email"
+            placeholder="user@email.com"
+          />
+          <label for="email" class="font-bold">Password</label>
+          <input
+            type="text"
+            class="w-min-md w-full py-2 px-4 rounded text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            v-model="password"
+            placeholder="your secret password"
+          />
 
-          <ElButton
-            type="success"
+          <button
             @click.prevent="signInPassword"
             :disabled="isLoading"
-            class="w-full"
+            class="w-full bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
-            <div class="flex gap-1">
+            <div
+              class="flex gap-1 items-center justify-center font-semibold tracking-wide"
+            >
               <Icon
                 :name="isLoading ? 'svg-spinners:180-ring' : 'bx:bxs-user'"
               />
               <span> Login /w Password </span>
             </div>
-          </ElButton>
+          </button>
 
-          <ElButton
+          <button
             type="warning"
             @click.prevent="signInGitHub"
             :disabled="isLoading"
-            class="w-full"
+            class="w-full bg-emerald-400 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded"
           >
-            <div class="flex gap-1">
+            <div
+              class="flex gap-1 items-center justify-center text-base tracking-wide"
+            >
               <Icon
                 :name="isLoading ? 'svg-spinners:180-ring' : 'bx:bxl-github'"
               />
               <span> Login /w GitHub </span>
             </div>
-          </ElButton>
+          </button>
         </div>
       </BlockHeader>
     </BlockColumn>
@@ -47,45 +60,16 @@ const email = ref('');
 const password = ref('');
 const isLoading = ref(false);
 
-const signInPassword = async () => {
-  try {
-    isLoading.value = true;
-    const { error } = await supabase.auth.signInWithPassword({
-      email: email.value,
-      password: password.value,
-    });
-    if (error) throw error;
-    if (!error) {
-      ElMessage({
-        message: 'Login success.',
-        type: 'success',
-      });
-      return navigateTo('/app');
-    }
-  } catch (error) {
-    alert(error.error_description || error.message);
-  } finally {
-    isLoading.value = false;
-  }
-};
+const signInPassword = async () => {};
 
 const signInGitHub = async () => {
   try {
     isLoading.value = true;
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'github',
-    });
-
-    if (error) throw error;
-    if (!error) {
-      ElMessage({
-        message: 'Login success.',
-        type: 'success',
-      });
-      return navigateTo('/app');
-    }
-  } catch (error) {
-    alert(error.error_description || error.message);
+    const { data, signIn } = useAuth();
+    await signIn('github');
+    if (data.value) navigateTo('/test');
+  } catch (e) {
+    alert(e.message);
   } finally {
     isLoading.value = false;
   }
