@@ -3,6 +3,7 @@
     :class="isCollapse ? 'w-64' : 'w-16'"
     class="relative top-0 left-0 flex flex-col min-h-screen bg-slate-900 text-white shadow-md overflow-hidden duration-300"
   >
+    <!-- Logo -->
     <div class="text-4xl font-bold leading-6 my-8 mx-auto">
       <NuxtLink
         class="flex flex-col gap-2 items-center hover:text-sky-500 duration-200"
@@ -11,22 +12,25 @@
         <img
           alt="Ganyu"
           src="/ganyu.png"
-          :class="isCollapse ? 'w-32 h-32' : 'w-8 h-8'"
+          :class="isCollapse ? 'w-32 h-32' : 'w-12 h-12'"
         />
         <h3 v-if="isCollapse" class="font-bold text-2xl">Ganyu</h3>
       </NuxtLink>
     </div>
+    <!-- Menu -->
     <ul class="p-4">
       <NuxtLink
         :to="menu.link"
         v-for="menu in menus"
         class="flex gap-2 tracking-6 items-center p-2 cursor-pointer rounded hover:bg-slate-300 hover:text-slate-900 hover:font-bold duration-100 hover:scale-110 hover:translate-x-5"
-        :class="{
-          hidden: (!user && menu.onlyAuthed) || (user && menu.hideWhenAuth),
-        }"
+        :class="[
+          {
+            hidden: (!user && menu.onlyAuthed) || (user && menu.hideWhenAuth),
+          },
+        ]"
       >
         <Icon :name="menu.icon" />
-        <span>{{ menu.name }}</span>
+        <span v-if="isCollapse">{{ menu.name }}</span>
       </NuxtLink>
     </ul>
     <!-- Collapse button -->

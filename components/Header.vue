@@ -32,12 +32,12 @@
           leave-to-class="translate-y-1 opacity-0"
         >
           <HlPopoverPanel
-            class="fixed z-10 top-12 right-4 flex flex-col gap-2 bg-slate-700 p-4 shadow rounded"
+            class="fixed z-10 top-12 right-4 flex flex-col gap-2 bg-white text-gray-700 dark:bg-slate-700 p-4 shadow rounded"
           >
             <NuxtLink
               v-for="menu in menus"
               :to="menu.link"
-              class="flex gap-2 items-center p-1 border-b border-slate-700 hover:text-slate-700 hover:bg-slate-300 rounded"
+              class="flex gap-2 items-center p-1 text-sm hover:text-slate-700 hover:bg-slate-300 rounded"
             >
               <Icon :name="menu.icon" />
               {{ menu.name }}
@@ -50,13 +50,17 @@
 </template>
 
 <script setup>
-const { data: profile } = useAuth()
+const { data: profile } = useAuth();
 
-const computedUsername = computed(() => profile.value.user?.name ?? 'no')
+const computedUsername = computed(() => profile.value.user?.name ?? 'no');
 
-const computedBalance = computed(() => profile.value.user?.balance?.toLocaleString() ?? 0)
+const computedBalance = computed(
+  () => profile.value.user?.balance?.toLocaleString() ?? 0
+);
 
-const computedImgUrl = computed(() => profile.value.user?.image ?? '/ganyu.png')
+const computedImgUrl = computed(
+  () => profile.value.user?.image ?? '/ganyu.png'
+);
 
 const menus = ref([
   {
