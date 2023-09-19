@@ -1,92 +1,33 @@
 <template>
   <div>
-    <BlockColumn>
-      <BlockHeader title="Profile" class="w-full max-w-xl mx-auto">
-        <div class="flex gap-2 flex-col items-center justify-center">
-          <div
-            v-if="status === 'authenticated'"
-            class="flex items-center justify-center gap-4 max-w-md shadow-md mx-auto rounded bg-white p-4"
+    <div class="flex gap-2 flex-col items-center justify-center">
+      <div
+        v-if="status === 'authenticated'"
+        class="flex items-center justify-center gap-4 max-w-md shadow-md mx-auto rounded bg-white p-4"
+      >
+        <img
+          :src="data.user.image"
+          alt="Avatar"
+          class="w-[128px] h-[128px] rounded-full ring-2 ring-green-400 shadow"
+        />
+
+        <div class="flex flex-col gap-2">
+          <h1 class="text-2xl font-bold text-center">
+            🏷️ {{ data.user.name }}
+          </h1>
+          <p class="text-gray-500 text-sm text-center">
+            {{ data.user.email }}
+          </p>
+          <button
+            @click=""
+            class="flex gap-2 items-center justify-center px-4 py-2 bg-red-400 rounded text-white shadow hover:bg-red-500 duration-200"
           >
-            <img
-              :src="data.user.image"
-              alt="Avatar"
-              class="w-[128px] h-[128px] rounded-full ring-2 ring-green-400 shadow"
-            />
-
-            <div class="flex flex-col gap-2">
-              <h1 class="text-2xl font-bold text-center">
-                🏷️ {{ data.user.name }}
-              </h1>
-              <p class="text-gray-500 text-sm text-center">
-                {{ data.user.email }}
-              </p>
-              <button
-                @click="signOut"
-                class="px-4 py-2 bg-red-400 rounded text-white shadow hover:bg-red-500 duration-200"
-              >
-                Sign Out
-              </button>
-            </div>
-          </div>
-
-          <img
-            :src="computedImgUrl"
-            class="block items-center justify-center rounded-full ring-1 ring-purple-400 shadow w-[128px] h-[128px]"
-            alt="Profile Picture"
-          />
-          <input
-            type="file"
-            @change="handleUploadImg"
-            name="Profile Image Upload Btn"
-            id="profileUpload"
-            class="text-sm bg-yellow-300 rounded"
-          />
+            <Icon name="bx:bxs-user-account" />
+            <span> Upload Avatar </span>
+          </button>
         </div>
-
-        <ElForm>
-          <ElFormItem label="Username">
-            <ElInput
-              v-model="profile.username"
-              placeholder="Username"
-              class="w-full"
-            />
-          </ElFormItem>
-          <ElFormItem label="Email">
-            <ElInput
-              v-model="profile.email"
-              placeholder="Email"
-              class="w-full"
-              disabled
-            />
-          </ElFormItem>
-          <ElFormItem label="Bio">
-            <ElInput
-              type="textarea"
-              v-model="profile.bio"
-              placeholder="Bio"
-              class="w-full"
-            />
-          </ElFormItem>
-          <div class="flex flex-row-reverse justify-between">
-            <Button
-              type="success"
-              name="Save Settings"
-              icon="bx:bxs-save"
-              @click="onSave"
-            />
-            <Button
-              type="danger"
-              name="Logout"
-              icon="bx:log-out"
-              @click="logOut"
-            />
-          </div>
-        </ElForm>
-        <p class="text-sm text-purple-500 my-3 leading-6">
-          {{ profile }}
-        </p>
-      </BlockHeader>
-    </BlockColumn>
+      </div>
+    </div>
   </div>
 </template>
 
