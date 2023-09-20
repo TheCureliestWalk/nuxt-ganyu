@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     // '@nuxt/image',
     '@nuxtjs/supabase',
     'nuxt-lodash',
-    // '@vite-pwa/nuxt',
+    '@vite-pwa/nuxt',
     // 'nuxt-security',
     //'@nuxtjs/device',
     '@pinia/nuxt',
