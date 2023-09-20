@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return ['Laravel' => app()->version()];
+    return ['api_status' => 'up and running', 'version' => app()->version()];
 });
+
+Route::get('/user', [App\Http\Controllers\UserController::class, 'index']);
 
 require __DIR__.'/auth.php';

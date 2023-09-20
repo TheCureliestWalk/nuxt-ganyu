@@ -60,7 +60,18 @@ const email = ref('');
 const password = ref('');
 const isLoading = ref(false);
 
-const signInPassword = async () => {};
+const signInPassword = async () => {
+  try {
+    isLoading.value = true;
+    const { signIn } = useAuth();
+    await signIn('credentials', {
+      email: email.value,
+      password: password.value,
+    });
+  } catch (error) {
+    alert(error);
+  }
+};
 
 const signInGitHub = async () => {
   try {
@@ -74,4 +85,13 @@ const signInGitHub = async () => {
     isLoading.value = false;
   }
 };
+
+definePageMeta([
+  {
+    auth: {
+      unauthenticatedOnly: true,
+      navigateAuthenticatedTo: '/profile',
+    },
+  },
+]);
 </script>
