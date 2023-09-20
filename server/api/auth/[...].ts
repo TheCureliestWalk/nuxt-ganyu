@@ -17,15 +17,18 @@ export default NuxtAuthHandler({
     BungieProvider.default({
       clientId: process.env.BUNGIE_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      headers: {
+        'X-API-Key': process.env.BUNGIE_API_KEY,
+      },
     }),
     // @ts-expect-error You need to use .default here for it to work during SSR.
     CredentialsProvider.default({
       name: 'Credentials',
       credentials: {
-        username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
+        email: { label: 'Email', type: 'text', placeholder: 'jsmith' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials: any) {
+      async authorize(credentials: any, req: any) {
         const user = {
           id: 1,
           name: 'Iho S.',
@@ -33,13 +36,19 @@ export default NuxtAuthHandler({
           password: '12345678',
           bio: 'this is my private biology!',
         };
+        console.log(credentials);
 
+        callback: {
+          console.log('callback');
+        }
+        // check if user exists
         if (
           credentials?.email === user.email &&
           credentials?.password === user.password
         ) {
           return user;
         } else {
+          console.log('wrong credientials provided');
           return null;
         }
       },

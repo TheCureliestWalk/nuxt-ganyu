@@ -14,8 +14,9 @@
     </div>
     <!-- Latest Post -->
     <p class="text-sm text-gray-500">Latest Posts (10)</p>
-    <ul>
-      <li v-for="post in posts" class="cursor-pointer hover:text-gray-500">
+    <p v-if="pending">Loading data...</p>
+    <ul v-if="allPosts">
+      <li v-for="post in allPosts" class="cursor-pointer hover:text-gray-500">
         <div class="flex gap-2 items-center">
           <span class="font-bold tracking-wide">-> {{ post.title }}</span>
           <span class="text-sm">10 min ago | by: Iho</span>
@@ -26,10 +27,16 @@
 </template>
 
 <script setup>
-const { data: posts, pending } = await useFetch('/api/post/getAllPosts', {
+const { data: posts, pending } = await useLazyFetch('/api/post', {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
   },
+});
+
+const allPosts = ref(posts);
+
+watch(allPosts, (newVal) => {
+  allposts.value = newVal;
 });
 </script>
