@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
   <BlockColumn>
     <Block>
@@ -12,6 +10,24 @@
       <NuxtLink to="/app/stock">Stock Management</NuxtLink>
     </Block>
   </BlockColumn>
-</template>
 
-<style scoped></style>
+  <BlockColumn>
+    <Block>
+      <div>
+        {{ useUser() }}
+        <button
+          @click="
+            useUser().setUser({
+              username: 'iho4741',
+              email: 'none',
+              avatar: 'https://avatars.githubusercontent.com/u/11296164?v=4',
+            })
+          "
+          class="bg-sky-700 text-white"
+        >
+          Action
+        </button>
+      </div>
+    </Block>
+  </BlockColumn>
+</template>

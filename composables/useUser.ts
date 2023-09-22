@@ -1,11 +1,17 @@
-export const useUser = () => {
-    const { data: userData } = useAuth();
-    
-    const user = useState('user', () => ({
-        userData
-    }));
+export function useUser() {
+  const user = useState<any>('user', () => {});
 
-    
-return user
-};
+  function setUser(newUser: Object) {
+    user.value = newUser;
+  }
 
+  function clearUser() {
+    user.value = {};
+  }
+
+  return {
+    user,
+    setUser,
+    clearUser,
+  };
+}

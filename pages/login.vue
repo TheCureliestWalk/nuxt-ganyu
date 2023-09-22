@@ -6,13 +6,15 @@
           <label for="email" class="font-bold">Email</label>
           <input
             type="text"
+            name="email"
             class="w-min-md w-full py-2 px-4 rounded text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             v-model="email"
             placeholder="user@email.com"
           />
           <label for="email" class="font-bold">Password</label>
           <input
-            type="text"
+            type="password"
+            name="password"
             class="w-min-md w-full py-2 px-4 rounded text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             v-model="password"
             placeholder="your secret password"
@@ -55,7 +57,9 @@
 </template>
 
 <script setup>
-const supabase = useSupabaseClient();
+import { useStorage } from '@vueuse/core';
+
+const user = useUser();
 const email = ref('');
 const password = ref('');
 const isLoading = ref(false);
@@ -63,13 +67,24 @@ const isLoading = ref(false);
 const signInPassword = async () => {
   try {
     isLoading.value = true;
-    const { signIn } = useAuth();
-    await signIn('credentials', {
-      email: email.value,
-      password: password.value,
+    const { data } = await useFetch('/api/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email.value,
+        password: password.value,
+      }),
     });
+
+    if (data.value) {
+      useStorage('token', data.value.access_token);
+      useStorage('user', data.value.user);
+      user.setUser(data.value.user);
+      return navigateTo('/app');
+    }
   } catch (error) {
     alert(error);
+  } finally {
+    isLoading.value = false;
   }
 };
 

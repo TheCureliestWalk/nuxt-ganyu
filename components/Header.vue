@@ -1,26 +1,27 @@
 <template>
+  <div>{{ user }}</div>
   <div
-    v-if="profile"
+    v-if="user"
     class="flex gap-2 p-4 bg-gradient-to-r from-slate-700 to-slate-900 flex gap-6 justify-end items-center shadow text-white"
   >
     <!-- Account Balance -->
     <div class="flex gap-1 items-center">
       <Icon name="bx:coin" />
-      <span>{{ computedBalance }}</span>
+      <span>{{ '0' }}</span>
     </div>
     <!-- Status -->
     <div class="flex gap-1 items-center">
       <i class="rounded-full p-1 bg-emerald-300" />
       <span>online</span>
       <span> | </span>
-      <span>{{ computedUsername }}</span>
+      <span>{{ user.username }}</span>
     </div>
 
     <!-- Profile Button -->
     <HlPopover>
       <HlPopoverButton class="outline-none flex items-center">
         <img
-          :src="computedImgUrl"
+          :src="user.avatar"
           class="w-8 h-8 outline outline-2 outline-offset-2 rounded-full"
         />
         <transition
@@ -42,6 +43,14 @@
               <Icon :name="menu.icon" />
               {{ menu.name }}
             </NuxtLink>
+
+            <button
+              class="flex gap-2 items-center p-1 text-sm text-red-700 hover:bg-slate-300 rounded"
+              @click="logOut"
+            >
+              <Icon name="bx:log-out" />
+              <span>Log Out</span>
+            </button>
           </HlPopoverPanel>
         </transition>
       </HlPopoverButton>
@@ -50,18 +59,14 @@
 </template>
 
 <script setup>
-const { data: profile } = useAuth();
+const { user } = useUser();
 
-const computedUsername = computed(() => profile.value.user?.name ?? 'no');
-
-const computedBalance = computed(
-  () => profile.value.user?.balance?.toLocaleString() ?? 0
-);
-
-const computedImgUrl = computed(
-  () => profile.value.user?.image ?? '/ganyu.png'
-);
-
+const logOut = () => {
+  const { data } = useFetch('/api/auth/logout', { method: 'POST' });
+  if (data) {
+    return navigateTo('/');
+  }
+};
 const menus = ref([
   {
     name: 'My Profile',
@@ -77,11 +82,6 @@ const menus = ref([
     name: 'Settings',
     icon: 'bx:bxs-cog',
     link: '/settings',
-  },
-  {
-    name: 'Log Out',
-    icon: 'bx:log-out',
-    link: '',
   },
 ]);
 </script>

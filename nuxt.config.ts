@@ -6,7 +6,6 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     'nuxt-headlessui',
-    // '@element-plus/nuxt',
     'nuxt-icon',
     // '@nuxt/image',
     '@nuxtjs/supabase',
@@ -16,10 +15,17 @@ export default defineNuxtConfig({
     //'@nuxtjs/device',
     '@pinia/nuxt',
     '@vueuse/nuxt',
-    '@sidebase/nuxt-auth',
+    // 'nuxt-csurf',
   ],
   auth: {
     enabled: true,
+  },
+  pinia: {
+    autoImports: [
+      // automatically imports `defineStore`
+      'defineStore', // import { defineStore } from 'pinia'
+      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+    ],
   },
   supabase: {
     redirect: false,
@@ -29,6 +35,22 @@ export default defineNuxtConfig({
   },
   experimental: {
     payloadExtraction: false,
+  },
+  imports: {
+    dirs: ['stores'],
+  },
+  csurf: {
+    // optional
+    https: false, // default true if in production
+    cookieKey: '', // "__Host-csrf" if https is true otherwise just "csrf"
+    cookie: {
+      // CookieSerializeOptions from unjs/cookie-es
+      path: '/',
+      httpOnly: true,
+      sameSite: 'strict',
+    },
+    methodsToProtect: ['POST', 'PUT', 'PATCH'], // the request methods we want CSRF protection for
+    excludedUrls: ['/nocsrf1', ['/nocsrf2/.*', 'i']], // any URLs we want to exclude from CSRF protection
   },
   app: {
     head: {

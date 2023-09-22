@@ -6,6 +6,13 @@
         class="w-full max-w-md mx-auto"
       >
         <div class="flex flex-col items-center gap-2.5">
+          <label for="username" class="font-bold">Username</label>
+          <input
+            type="text"
+            class="w-min-md w-full py-2 px-4 rounded text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            v-model="username"
+            placeholder="john123"
+          />
           <label for="email" class="font-bold">Email</label>
           <input
             type="text"
@@ -15,14 +22,14 @@
           />
           <label for="email" class="font-bold">Password</label>
           <input
-            type="text"
+            type="password"
             class="w-min-md w-full py-2 px-4 rounded text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             v-model="password"
             placeholder="your secret password"
           />
 
           <button
-            @click.prevent="signInPassword"
+            @click.prevent="signUpPassword"
             :disabled="isLoading"
             class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded"
           >
@@ -42,20 +49,25 @@
 </template>
 
 <script setup>
-const supabase = useSupabaseClient();
+const username = ref('');
 const email = ref('');
 const password = ref('');
 const isLoading = ref(false);
 const signUpPassword = async () => {
   try {
     isLoading.value = true;
-    const { data, error } = await supabase.auth.signUp({
-      email: email.value,
-      password: password.value,
+    const { data } = await useFetch('/api/auth/register', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: username.value,
+        email: email.value,
+        password: password.value,
+      }),
     });
-    if (error) throw error;
-    if (data) {
-      return navigateTo('/');
+
+    if (data.value) {
+      alert('Registration successful!');
+      return navigateTo('/profile');
     }
   } catch (error) {
     alert(error);

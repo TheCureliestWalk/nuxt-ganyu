@@ -26,7 +26,7 @@ const { status, data, signIn, signOut } = useAuth();
       </div>
     </div>
 
-    <p>{{ useUser() }}</p>
+    <p class="text-green-500">{{ useUser() }}</p>
     <p class="text-purple-500">status: {{ status }}</p>
     <p class="text-red-500">data: {{ data }}</p>
     <div v-if="status === 'unauthenticated'">
