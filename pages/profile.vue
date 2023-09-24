@@ -42,9 +42,13 @@
 <script setup lang="ts">
 import { Profile } from '~/types/typeProfile';
 
-const { data: user, pending } = useLazyFetch<Profile>('/api/user/me', {
+let user: object = reactive({});
+const { data: x, pending } = useLazyFetch<Profile>('/api/user/me', {
   method: 'GET',
 });
+
+user = x;
+
 const onSave = async () => {};
 
 const logOut = async () => {};

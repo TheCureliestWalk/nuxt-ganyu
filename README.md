@@ -1,6 +1,6 @@
 # Ganyu App
 
-![GitHub top language](https://img.shields.io/github/languages/top/TheCureliestWalk/nuxt-ganyu)
+![Foxsir](public/foxsir.png)![GitHub top language](https://img.shields.io/github/languages/top/TheCureliestWalk/nuxt-ganyu)
 
 ## Run on a local machine
 

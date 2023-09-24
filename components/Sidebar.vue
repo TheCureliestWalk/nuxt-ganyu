@@ -25,7 +25,7 @@
         class="flex gap-2 tracking-6 items-center p-2 cursor-pointer rounded hover:bg-slate-300 hover:text-slate-900 hover:font-bold duration-100 hover:scale-110 hover:translate-x-5"
         :class="[
           {
-            hidden: (!user && menu.onlyAuthed) || (user && menu.hideWhenAuth),
+            hidden: !user && menu.onlyAuthed,
           },
         ]"
       >
@@ -45,15 +45,14 @@
 
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core';
-import { User } from '~/types/typeUser';
-const user: any = useStorage('user', null);
+const userFromStorage = JSON.parse(localStorage.getItem('user')!);
+const user = ref(userFromStorage);
 
 type MenuType = {
   name: string;
   link: string;
-  icon?: string;
+  icon: string;
   onlyAuthed?: boolean;
-  hideWhenAuth?: boolean;
 };
 
 const isCollapse = useStorage('sidebar-collapse', true);
@@ -64,49 +63,30 @@ const menus = ref<MenuType[]>([
     link: '/',
     icon: 'bx:bxs-home',
     onlyAuthed: false,
-    hideWhenAuth: false,
   },
   {
     name: 'Apps',
     link: '/app',
     icon: 'game-icons:abstract-050',
     onlyAuthed: true,
-    hideWhenAuth: false,
   },
   {
     name: 'My Profile',
     link: '/profile',
     icon: 'bx:user',
     onlyAuthed: true,
-    hideWhenAuth: false,
-  },
-  {
-    name: 'Register',
-    link: '/register',
-    icon: 'bx:bxs-user-plus',
-    onlyAuthed: false,
-    hideWhenAuth: true,
-  },
-  {
-    name: 'Login',
-    link: '/login',
-    icon: 'bx:bxs-user',
-    onlyAuthed: false,
-    hideWhenAuth: true,
   },
   {
     name: 'Dashboard',
     link: '/dashboard',
     icon: 'fluent-emoji-high-contrast:bubbles',
     onlyAuthed: true,
-    hideWhenAuth: false,
   },
   {
     name: 'Settings',
     link: '/settings',
     icon: 'bx:bxs-cog',
     onlyAuthed: true,
-    hideWhenAuth: false,
   },
 ]);
 </script>

@@ -1,5 +1,4 @@
 <template>
-  <div>{{ user }}</div>
   <div
     v-if="user"
     class="flex gap-2 p-4 bg-gradient-to-r from-slate-700 to-slate-900 flex gap-6 justify-end items-center shadow text-white"
@@ -59,7 +58,8 @@
 </template>
 
 <script setup>
-const { user } = useUser();
+const userFromStorage = JSON.parse(localStorage.getItem('user'));
+const user = ref(userFromStorage);
 
 const logOut = () => {
   const { data } = useFetch('/api/auth/logout', { method: 'POST' });

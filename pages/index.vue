@@ -9,11 +9,16 @@
     >
     <div class="flex gap-4">
       <Button name="Login" icon="bx:bxs-user" link="/login" v-if="!user" />
-      <Button name="About" icon="bx:bxs-info-circle" />
+      <Button
+        name="Register"
+        icon="bx:bxs-user-plus"
+        link="/register"
+        v-if="!user"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-const user = useSupabaseUser();
+const { user } = useUser();
 </script>

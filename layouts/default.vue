@@ -2,11 +2,15 @@
   <div
     class="flex bg-gradient-to-r from-sky-100 to-pink-100 w-full min-h-screen"
   >
-    <Sidebar />
-
+    <ClientOnly>
+      <Sidebar />
+    </ClientOnly>
     <div class="w-full">
-      <Header />
-      <NuxtLoadingIndicator />
+      <ClientOnly>
+        <Header />
+        <NuxtLoadingIndicator />
+        <Toast />
+      </ClientOnly>
       <NuxtPage class="p-4" />
     </div>
   </div>

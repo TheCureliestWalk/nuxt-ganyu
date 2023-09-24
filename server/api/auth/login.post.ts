@@ -42,6 +42,7 @@ export default defineEventHandler(async (event) => {
 
     storeToken();
     setCookie(event, 'token', token);
+    setCookie(event, 'user', user);
     if (process.client) {
       window.localStorage.setItem('userData', JSON.stringify(token));
     }

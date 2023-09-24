@@ -13,6 +13,9 @@
 
   <BlockColumn>
     <Block>
+      <NuxtLink to="/app/player">Music Player</NuxtLink>
+    </Block>
+    <Block>
       <div>
         {{ useUser() }}
         <button

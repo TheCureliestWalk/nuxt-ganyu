@@ -11,4 +11,4 @@ parserOptions:
 plugins:
   - '@typescript-eslint'
   - vue
-rules: {}
+rules: { 'no-undef': false }
