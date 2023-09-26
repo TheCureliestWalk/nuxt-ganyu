@@ -23,11 +23,6 @@
         :to="menu.link"
         v-for="menu in menus"
         class="flex gap-2 tracking-6 items-center p-2 cursor-pointer rounded hover:bg-slate-300 hover:text-slate-900 hover:font-bold duration-100 hover:scale-110 hover:translate-x-5"
-        :class="[
-          {
-            hidden: !user && menu.onlyAuthed,
-          },
-        ]"
       >
         <Icon :name="menu.icon" />
         <span v-if="isCollapse">{{ menu.name }}</span>
@@ -52,7 +47,6 @@ type MenuType = {
   name: string;
   link: string;
   icon: string;
-  onlyAuthed?: boolean;
 };
 
 const isCollapse = useStorage('sidebar-collapse', true);
@@ -62,31 +56,26 @@ const menus = ref<MenuType[]>([
     name: 'Home',
     link: '/',
     icon: 'bx:bxs-home',
-    onlyAuthed: false,
   },
   {
     name: 'Apps',
     link: '/app',
     icon: 'game-icons:abstract-050',
-    onlyAuthed: true,
   },
   {
     name: 'My Profile',
     link: '/profile',
     icon: 'bx:user',
-    onlyAuthed: true,
   },
   {
     name: 'Dashboard',
     link: '/dashboard',
     icon: 'fluent-emoji-high-contrast:bubbles',
-    onlyAuthed: true,
   },
   {
     name: 'Settings',
     link: '/settings',
     icon: 'bx:bxs-cog',
-    onlyAuthed: true,
   },
 ]);
 </script>

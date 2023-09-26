@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profile;
 use Illuminate\Http\Request;
+use App\Models\Profile;
 
 class ProfileController extends Controller
 {
@@ -11,6 +11,15 @@ class ProfileController extends Controller
      * Display a listing of the resource.
      */
     public function index()
+    {
+        $profile = Profile::all();
+        return response()->json($profile);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
         //
     }
@@ -26,7 +35,15 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Profile $profile)
+    public function show(string $id)
+    {
+        return Profile::find($id);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
     {
         //
     }
@@ -34,7 +51,7 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -42,7 +59,7 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Profile $profile)
+    public function destroy(string $id)
     {
         //
     }

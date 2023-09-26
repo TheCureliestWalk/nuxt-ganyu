@@ -47,6 +47,7 @@
 </template>
 
 <script setup lang="ts">
+const user = useUser();
 interface Task {
   id?: string;
   task: string;
@@ -57,7 +58,13 @@ const newTask = ref<string | null>('');
 const computedTasks = computed(() => tasks.value.length);
 const tasks = ref<Task[] | object[]>([]);
 
-const { data: fetchTodo, pending } = await useLazyFetch('/api/todo');
+const { data: fetchTodo, pending } = await useLazyFetch('/api/todo', {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${user.value?.token}`,
+  },
+});
 tasks.value = fetchTodo.value || [];
 
 const onSubmit = () => {
@@ -72,6 +79,10 @@ const onSubmit = () => {
       body: JSON.stringify({
         task: newTask.value,
       }),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.value?.token}`,
+      },
     });
 
     if (data.value) {

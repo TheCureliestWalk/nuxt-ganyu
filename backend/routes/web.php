@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return ['api_status' => 'up and running', 'version' => app()->version()];
+    return ['status' => 'calamitous'];
 });
 
-Route::get('/user', [App\Http\Controllers\UserController::class, 'index']);
+Route::resource('/profile', \App\Http\Controllers\ProfileController::class)->middleware('auth:sanctum');
 
 require __DIR__.'/auth.php';
