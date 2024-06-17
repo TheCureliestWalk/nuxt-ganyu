@@ -52,22 +52,22 @@
 const musics = ref([
   {
     id: 1,
-    title: 'Eutopia',
-    artist: 'Lanzhu Zhong',
+    title: 'In The End',
+    artist: 'Linkin Park',
     cover: 'https://placehold.co/600x400',
     src: '',
   },
   {
     id: 2,
-    title: 'Deep Stone Lullaby',
-    artist: 'สกาย เลวิน และไมเคิล ซัลวาตอรี',
+    title: 'Complicated',
+    artist: 'Avril Lavigne',
     cover: 'https://placehold.co/600x400',
     src: '',
   },
   {
     id: 3,
-    title: 'アイオライト',
-    artist: '水瀬いのり',
+    title: 'Bad Blood',
+    artist: 'Taylor Swift',
     cover: 'https://placehold.co/600x400',
     src: '',
   },
