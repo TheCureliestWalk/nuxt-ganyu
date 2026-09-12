@@ -16,7 +16,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="user in users" class="text-sm">
+          <!-- Bolt perf optimization: Added :key to v-for loop to optimize Vue virtual DOM diffing -->
+          <tr
+            v-for="(user, idx) in users"
+            :key="user.id || idx"
+            class="text-sm"
+          >
             <td class="border-r">{{ user.id }}</td>
             <td class="border-r">{{ user.username }}</td>
             <td class="border-r">{{ user.email }}</td>

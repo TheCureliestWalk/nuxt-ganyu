@@ -26,9 +26,11 @@
 
       <div class="flex flex-col gap-2">
         <!-- Task lists -->
+        <!-- Bolt perf optimization: Added :key to v-for loop to optimize Vue virtual DOM diffing -->
         <div
           class="flex gap-2 justify-between items-center"
           v-for="(task, idx) in tasks"
+          :key="task.id || idx"
         >
           <span
             class="w-full hover:font-bold hover:pl-2 hover:bg-green-400 hover:text-white rounded duration-100"

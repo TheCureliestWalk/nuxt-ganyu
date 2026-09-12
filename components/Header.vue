@@ -34,8 +34,10 @@
           <HlPopoverPanel
             class="fixed z-10 top-12 right-4 flex flex-col gap-2 bg-white text-gray-700 dark:bg-slate-700 p-4 shadow rounded"
           >
+            <!-- Bolt perf optimization: Added :key to v-for loop to optimize Vue virtual DOM diffing -->
             <NuxtLink
               v-for="menu in menus"
+              :key="menu.name"
               :to="menu.link"
               class="flex gap-2 items-center p-1 text-sm hover:text-slate-700 hover:bg-slate-300 rounded"
             >
