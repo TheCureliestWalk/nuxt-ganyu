@@ -19,9 +19,11 @@
     </div>
     <!-- Menu -->
     <ul class="p-4">
+      <!-- Bolt perf optimization: Added :key to v-for loop to optimize Vue virtual DOM diffing -->
       <NuxtLink
         :to="menu.link"
         v-for="menu in menus"
+        :key="menu.name"
         class="flex gap-2 tracking-6 items-center p-2 cursor-pointer rounded hover:bg-slate-300 hover:text-slate-900 hover:font-bold duration-100 hover:scale-110 hover:translate-x-5"
       >
         <Icon :name="menu.icon" />

@@ -16,7 +16,12 @@
     <p class="text-sm text-gray-500">Latest Posts (10)</p>
     <p v-if="pending">Loading data...</p>
     <ul v-if="allPosts">
-      <li v-for="post in allPosts" class="cursor-pointer hover:text-gray-500">
+      <!-- Bolt perf optimization: Added :key to v-for loop to optimize Vue virtual DOM diffing -->
+      <li
+        v-for="(post, index) in allPosts"
+        :key="post.id || index"
+        class="cursor-pointer hover:text-gray-500"
+      >
         <div class="flex gap-2 items-center">
           <span class="font-bold tracking-wide">-> {{ post.title }}</span>
           <span class="text-sm">10 min ago | by: Iho</span>
