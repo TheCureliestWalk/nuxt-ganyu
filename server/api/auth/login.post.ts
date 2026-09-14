@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
         },
       });
 
-    storeToken();
+    await storeToken();
     setCookie(event, 'token', token);
     setCookie(event, 'user', user);
     if (process.client) {
