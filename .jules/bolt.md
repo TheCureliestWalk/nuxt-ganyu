@@ -1,0 +1,1 @@
+## 2024-05-24 - Await Database Writes\n**Learning:** In unawaited async functions like database writes before HTTP responses, it can cause data loss or race conditions where data is not persisted.\n**Action:** Ensure critical database operations like `storeToken()` are properly awaited.
