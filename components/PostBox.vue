@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-const { data: posts, pending } = await useLazyFetch('/api/post', {
+const { data: posts, pending } = await useLazyFetch('/api/post?limit=10', {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
