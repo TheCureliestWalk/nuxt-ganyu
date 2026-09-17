@@ -27,7 +27,8 @@
 </template>
 
 <script setup>
-const { data: posts, pending } = await useLazyFetch('/api/post', {
+// ⚡ Bolt Optimization: Use ?limit=10 to avoid fetching unused posts
+const { data: posts, pending } = await useLazyFetch('/api/post?limit=10', {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
