@@ -29,6 +29,9 @@
 <script setup>
 const { data: posts, pending } = await useLazyFetch('/api/post', {
   method: 'GET',
+  query: {
+    take: 10,
+  },
   headers: {
     'Content-Type': 'application/json',
   },
