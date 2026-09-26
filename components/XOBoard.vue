@@ -88,7 +88,6 @@ const reset = () => {
 
 const undo = () => {
   history[history.length - 2].map((value, index) => (board[index] = value));
-  console.log(history);
 };
 
 const checkWinner = computed(() => {
@@ -107,7 +106,6 @@ watch(
   board,
   () => {
     history.push(board.slice());
-    console.log(history); //debug
   },
   {
     deep: true,
