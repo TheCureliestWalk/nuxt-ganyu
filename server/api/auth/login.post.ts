@@ -2,7 +2,7 @@ import type { User } from '~/types/typeUser';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const generateToken = (user: any) => {
+const generateToken = (user: User) => {
   const signedUser = {
     id: user.id,
     username: user.username,
