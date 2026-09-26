@@ -83,11 +83,13 @@ const makeTurn = (p) => {
 };
 
 const reset = () => {
-  board.map((_, i) => (board[i] = null));
+  // Optimization: use forEach instead of map for array mutation to prevent unnecessary array allocations
+  board.forEach((_, i) => (board[i] = null));
 };
 
 const undo = () => {
-  history[history.length - 2].map((value, index) => (board[index] = value));
+  // Optimization: use forEach instead of map for array mutation to prevent unnecessary array allocations
+  history[history.length - 2].forEach((value, index) => (board[index] = value));
   console.log(history);
 };
 
