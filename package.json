@@ -16,7 +16,6 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@nuxt/test-utils": "3.4.1",
     "@nuxtjs/device": "^3.1.1",
     "@nuxtjs/supabase": "^1.1.0",
     "@nuxtjs/tailwindcss": "^6.8.0",
@@ -26,8 +25,6 @@
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@typescript-eslint/parser": "^6.7.2",
     "@vite-pwa/nuxt": "^0.1.1",
-    "@vitest/ui": "0.34.6",
-    "c8": "^12.0.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.28.1",
