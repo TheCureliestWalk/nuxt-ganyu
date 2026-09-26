@@ -107,7 +107,6 @@ watch(
   board,
   () => {
     history.push(board.slice());
-    console.log(history); //debug
   },
   {
     deep: true,
