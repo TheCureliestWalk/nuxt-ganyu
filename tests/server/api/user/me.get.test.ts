@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import meHandler from './me.get';
+import meHandler from '@/server/api/user/me.get';
 import prisma from '@/server/_app/prisma';
 
 // Mock the prisma module

@@ -5,6 +5,8 @@ export default defineConfig({
   test: {
     globals: true,
     setupFiles: ['./vitest.setup.ts'],
+    exclude: ['node_modules', '.nuxt', '.output'],
+    include: ['tests/**/*.test.ts']
   },
   resolve: {
     alias: {
