@@ -83,11 +83,11 @@ const makeTurn = (p) => {
 };
 
 const reset = () => {
-  board.map((_, i) => (board[i] = null));
+  board.fill(null);
 };
 
 const undo = () => {
-  history[history.length - 2].map((value, index) => (board[index] = value));
+  history[history.length - 2].forEach((value, index) => (board[index] = value));
   console.log(history);
 };
 
