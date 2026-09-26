@@ -1,0 +1,3 @@
+## 2024-03-24 - Vue Array Mutation Optimization
+**Learning:** In Vue reactive arrays, using `map()` for the sole purpose of mutating elements is inefficient because it creates a new array allocation which is immediately discarded, causing unnecessary overhead. Replacing `map()` with `fill()` (for clearing) or `forEach()` (for complex iteration/assignment) is faster and prevents unnecessary garbage collection, while still preserving Vue's reactivity tracking because both methods mutate the array in-place.
+**Action:** When auditing components for performance, check array mutation patterns and replace `array.map(...)` with `array.fill()` or `array.forEach()` if the mapped return value is not assigned or used.
