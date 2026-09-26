@@ -1,6 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-vi.stubGlobal('defineEventHandler', vi.fn((fn) => fn));
+vi.stubGlobal(
+  'defineEventHandler',
+  vi.fn((fn) => fn)
+);
 const mockReadBody = vi.fn();
 vi.stubGlobal('readBody', mockReadBody);
 const mockSetResponseStatus = vi.fn();
@@ -17,7 +20,7 @@ describe('POST /api/todo', () => {
     mockReadBody.mockResolvedValue({});
 
     const event = {
-      context: {}
+      context: {},
     };
 
     const response = await handler(event);
@@ -29,7 +32,9 @@ describe('POST /api/todo', () => {
   it('should create a todo when authorized via cookie', async () => {
     mockReadBody.mockResolvedValue({ task: 'New Task' });
 
-    const mockPrismaTodoCreate = vi.fn().mockResolvedValue({ id: 1, task: 'New Task' });
+    const mockPrismaTodoCreate = vi
+      .fn()
+      .mockResolvedValue({ id: 1, task: 'New Task' });
 
     const event = {
       context: {
@@ -37,10 +42,10 @@ describe('POST /api/todo', () => {
         userFromCookie: 'user123',
         prisma: {
           todo: {
-            create: mockPrismaTodoCreate
-          }
-        }
-      }
+            create: mockPrismaTodoCreate,
+          },
+        },
+      },
     };
 
     const response = await handler(event);
@@ -49,7 +54,7 @@ describe('POST /api/todo', () => {
       data: {
         userId: 'user123',
         task: 'New Task',
-      }
+      },
     });
     expect(response).toEqual({ id: 1, task: 'New Task' });
   });
@@ -57,7 +62,9 @@ describe('POST /api/todo', () => {
   it('should create a todo when authorized via header', async () => {
     mockReadBody.mockResolvedValue({ task: 'Another Task' });
 
-    const mockPrismaTodoCreate = vi.fn().mockResolvedValue({ id: 2, task: 'Another Task' });
+    const mockPrismaTodoCreate = vi
+      .fn()
+      .mockResolvedValue({ id: 2, task: 'Another Task' });
 
     const event = {
       context: {
@@ -65,10 +72,10 @@ describe('POST /api/todo', () => {
         userFromCookie: 'user456',
         prisma: {
           todo: {
-            create: mockPrismaTodoCreate
-          }
-        }
-      }
+            create: mockPrismaTodoCreate,
+          },
+        },
+      },
     };
 
     const response = await handler(event);
@@ -77,7 +84,7 @@ describe('POST /api/todo', () => {
       data: {
         userId: 'user456',
         task: 'Another Task',
-      }
+      },
     });
     expect(response).toEqual({ id: 2, task: 'Another Task' });
   });
