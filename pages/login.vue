@@ -101,12 +101,10 @@ const signInGitHub = async () => {
   }
 };
 
-definePageMeta([
-  {
-    auth: {
-      unauthenticatedOnly: true,
-      navigateAuthenticatedTo: '/profile',
-    },
+definePageMeta({
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/profile',
   },
-]);
+});
 </script>
