@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ElTable v-loading="isLoading" :data="items" style="width: 100%">
+    <ElTable :data="items" style="width: 100%">
       <ElTableColumn prop="name" label="name" />
     </ElTable>
   </div>

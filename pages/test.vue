@@ -5,7 +5,7 @@ const { status, data, signIn, signOut } = useAuth();
 <template>
   <div>
     <div
-      v-if="status === 'authenticated'"
+      v-if="status === 'authenticated' && data?.user"
       class="flex items-center justify-center gap-4 max-w-md shadow-md mx-auto rounded bg-white p-4"
     >
       <img

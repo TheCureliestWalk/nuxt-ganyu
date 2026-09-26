@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { Profile } from '~/types/typeProfile';
+import type { Profile } from '~/types/typeProfile';
 
 let user: object = reactive({});
 const { data: x, pending } = useLazyFetch<Profile>('/api/user/me', {
