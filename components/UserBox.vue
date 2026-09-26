@@ -37,7 +37,7 @@ const {
   data: users,
   error,
   pending,
-} = await useLazyFetch('/api/user', {
+} = await useLazyFetch('/api/user?take=10', {
   method: 'GET',
 });
 </script>
