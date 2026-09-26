@@ -94,7 +94,5 @@ const onSubmit = () => {
   }
 };
 
-const onDelete = (id: number) => {
-  // tasks.value = tasks.value.filter((task) => 1 - 1 !== id);
-};
+const onDelete = (id: number) => {};
 </script>
