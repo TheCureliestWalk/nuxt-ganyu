@@ -1,0 +1,1 @@
+globalThis.eventHandler = (fn) => fn;
