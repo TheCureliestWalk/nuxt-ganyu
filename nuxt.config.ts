@@ -57,4 +57,7 @@ export default defineNuxtConfig({
       title: 'Ganyu App',
     },
   },
+  runtimeConfig: {
+    bungieApiKey: process.env.BUNGIE_API_KEY,
+  },
 });
