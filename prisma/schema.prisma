@@ -32,6 +32,9 @@ model UserSession {
   token     String   @unique
   user      User     @relation(fields: [userId], references: [id])
   userId    String
+
+  // Bolt ⚡: Added index on foreign key to prevent full table scans during relation queries
+  @@index([userId])
 }
 
 model Post {
@@ -42,6 +45,9 @@ model Post {
   updatedAt DateTime @updatedAt
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String
+
+  // Bolt ⚡: Added index on foreign key to prevent full table scans during relation queries
+  @@index([authorId])
 }
 
 model Todo {
@@ -52,4 +58,7 @@ model Todo {
   updatedAt DateTime @updatedAt
   userId    String
   user      User     @relation(fields: [userId], references: [id])
+
+  // Bolt ⚡: Added index on foreign key to prevent full table scans during relation queries
+  @@index([userId])
 }
