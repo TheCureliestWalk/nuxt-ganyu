@@ -32,6 +32,8 @@ model UserSession {
   token     String   @unique
   user      User     @relation(fields: [userId], references: [id])
   userId    String
+
+  @@index([userId])
 }
 
 model Post {
@@ -42,14 +44,18 @@ model Post {
   updatedAt DateTime @updatedAt
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String
+
+  @@index([authorId])
 }
 
 model Todo {
-  id        Int   @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   task      String
   done      Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    String
   user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }
