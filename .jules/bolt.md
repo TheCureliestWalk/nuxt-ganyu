@@ -1,0 +1,1 @@
+## 2024-05-24 - Missing Foreign Key Indexes in Prisma Postgres\n**Learning:** Prisma does not auto-create indexes on foreign keys in PostgreSQL. This causes full table scans on relational queries.\n**Action:** Always add @@index([foreignKey]) to models with @relation directives.
